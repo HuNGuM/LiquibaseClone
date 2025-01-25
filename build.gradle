@@ -1,0 +1,83 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'com.github.johnrengelman.shadow' version '8.1.1' // Плагин для создания "fat" JAR
+}
+
+group = 'com.mylibrary'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.postgresql:postgresql:42.3.1'
+    implementation 'org.slf4j:slf4j-api:1.7.32'  // версия SLF4J API
+    implementation 'ch.qos.logback:logback-classic:1.2.6'  // версия Logback
+    implementation 'ch.qos.logback:logback-core:1.2.6'     // версия Logback core
+    implementation 'org.apache.commons:commons-dbcp2:2.9.0' // Добавляем зависимость для пула соединений
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            // Обычный JAR с уникальным классификатором
+            artifact(tasks.jar) {
+                classifier = 'plain'  // Классификатор для обычного JAR
+            }
+
+            // "Fat" JAR с зависимостями с уникальным классификатором
+            artifact(tasks.shadowJar) {
+                classifier = 'all-fat'  // Классификатор для "fat" JAR
+            }
+
+            groupId = 'com.mylibrary'
+            artifactId = 'LiquibaseCloneProject'
+            version = '1.0.0'
+
+            // Добавляем манифест
+            pom {
+                name = 'LiquibaseCloneProject'
+                description = 'My custom Liquibase migration project'
+                url = 'https://example.com/my-library'
+
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'yourId'
+                        name = 'Your Name'
+                        email = 'your.email@example.com'
+                    }
+                }
+
+                scm {
+                    connection = 'scm:git:git://github.com/your/project.git'
+                    developerConnection = 'scm:git:ssh://github.com/your/project.git'
+                    url = 'https://github.com/your/project'
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            url = uri("$buildDir/repos") // Публикация в локальный репозиторий
+        }
+    }
+}
