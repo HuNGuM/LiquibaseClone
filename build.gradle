@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'maven-publish'
     id 'com.github.johnrengelman.shadow' version '8.1.1' // Плагин для создания "fat" JAR
+    id 'jacoco'  // Добавляем плагин JaCoCo
 }
 
 group = 'com.mylibrary'
@@ -13,17 +14,33 @@ repositories {
 
 dependencies {
     implementation 'org.postgresql:postgresql:42.3.1'
-    implementation 'org.slf4j:slf4j-api:1.7.32'  // версия SLF4J API
-    implementation 'ch.qos.logback:logback-classic:1.2.6'  // версия Logback
-    implementation 'ch.qos.logback:logback-core:1.2.6'     // версия Logback core
-    implementation 'org.apache.commons:commons-dbcp2:2.9.0' // Добавляем зависимость для пула соединений
+    implementation 'org.slf4j:slf4j-api:1.7.32'
+    implementation 'ch.qos.logback:logback-classic:1.2.6'
+    implementation 'ch.qos.logback:logback-core:1.2.6'
+    implementation 'org.apache.commons:commons-dbcp2:2.9.0'
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.1'
+
+    testImplementation 'org.mockito:mockito-core:5.3.1'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.3.1'
+
+    testImplementation 'com.h2database:h2:2.1.214' // Актуальная версия H2
+    // https://mvnrepository.com/artifact/org.testcontainers/postgresql
+    testImplementation 'org.testcontainers:postgresql:1.20.4'
+
+
+
+    // For Mockito 5.x, you might not need PowerMock at all
+    // testImplementation 'org.powermock:powermock-module-junit5:2.0.9' // Remove if not needed
+    // testImplementation 'org.powermock:powermock-api-mockito2:2.0.9' // Remove if not needed
 }
+
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
 }
 
 publishing {
@@ -78,6 +95,20 @@ publishing {
     repositories {
         maven {
             url = uri("$buildDir/repos") // Публикация в локальный репозиторий
+        }
+    }
+}
+jacocoTestReport {
+    dependsOn test // Зависимость отчета от задачи тестирования
+
+    reports {
+        xml {
+            setEnabled(true)  // Включаем создание XML отчета
+            destination file("${buildDir}/jacocoTestReport.xml") // Путь для XML отчета
+        }
+        html {
+            setEnabled(true) // Включаем создание HTML отчета
+            destination file("${buildDir}/jacocoHtml") // Путь для HTML отчета
         }
     }
 }

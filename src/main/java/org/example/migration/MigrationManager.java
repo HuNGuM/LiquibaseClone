@@ -110,7 +110,7 @@ public class MigrationManager {
             logger.error("Error during rollback: {}", e.getMessage(), e);
         }
     }
-    private void removeMigrationRecord(String version) throws SQLException {
+    public void removeMigrationRecord(String version) throws SQLException {
         String sql = "DELETE FROM " + MIGRATION_TABLE + " WHERE version = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, version);
@@ -118,7 +118,7 @@ public class MigrationManager {
         }
     }
 
-    private void createMigrationTableIfNotExists() throws SQLException {
+    public void createMigrationTableIfNotExists() throws SQLException {
         String sql = "CREATE TABLE IF NOT EXISTS " + MIGRATION_TABLE + " (" +
                 "id SERIAL PRIMARY KEY, " +
                 "version VARCHAR(50) NOT NULL, " +
@@ -133,7 +133,7 @@ public class MigrationManager {
         }
     }
 
-    private List<String> readMigrationOrder() throws IOException {
+    public List<String> readMigrationOrder() throws IOException {
         // Reading the sql-order.txt file and extracting migration execution order
         File orderFile = new File(ORDER_FILE);
         if (!orderFile.exists()) {
@@ -145,7 +145,7 @@ public class MigrationManager {
                 .collect(Collectors.toList());
     }
 
-    private List<File> getMigrationFiles() {
+    public List<File> getMigrationFiles() {
         File migrationDir = new File(MIGRATION_DIR);
         if (!migrationDir.exists() || !migrationDir.isDirectory()) {
             logger.error("Migration directory does not exist: {}", MIGRATION_DIR);
@@ -160,14 +160,14 @@ public class MigrationManager {
         return migrationFiles;
     }
 
-    private String extractVersion(File file) {
+    public String extractVersion(File file) {
         String filename = file.getName();
         // Extract version from the filename (e.g., V1__init.sql -> 1)
         String version = filename.split("__")[0].replaceAll("[^0-9]", "");
         return version;
     }
 
-    private String calculateChecksum(File file) throws IOException, NoSuchAlgorithmException {
+    public String calculateChecksum(File file) throws IOException, NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance(CHECKSUM_ALGORITHM);
         try (FileInputStream fis = new FileInputStream(file)) {
             byte[] byteArray = new byte[1024];
@@ -185,7 +185,7 @@ public class MigrationManager {
         return checksum;
     }
 
-    private boolean isMigrationApplied(String version, String checksum) throws SQLException {
+    public boolean isMigrationApplied(String version, String checksum) throws SQLException {
         String sql = "SELECT COUNT(*) FROM " + MIGRATION_TABLE + " WHERE version = ? AND checksum = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, version);
@@ -197,13 +197,13 @@ public class MigrationManager {
         }
     }
 
-    private void applyMigration(File file) throws SQLException {
+    public void applyMigration(File file) throws SQLException {
         String sql = readSqlFromFile(file);
         executor.executeMigration(sql);
         logger.info("Executed migration from file: {}", file.getName());
     }
 
-    private void markMigrationAsApplied(String version, String checksum) throws SQLException {
+    public void markMigrationAsApplied(String version, String checksum) throws SQLException {
         String sql = "INSERT INTO " + MIGRATION_TABLE + " (version, checksum) VALUES (?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, version);
@@ -213,7 +213,7 @@ public class MigrationManager {
         }
     }
 
-    private String readSqlFromFile(File file) {
+    public String readSqlFromFile(File file) {
         try {
             String sql = new String(java.nio.file.Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
             return sql;
