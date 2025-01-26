@@ -10,6 +10,8 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -62,6 +64,57 @@ public class MigrationManager {
             }
         } catch (SQLException | IOException | NoSuchAlgorithmException e) {
             logger.error("Error during migration process: {}", e.getMessage(), e);
+        }
+    }
+    public void rollbackToDate(LocalDateTime rollbackDate) {
+        try {
+            createMigrationTableIfNotExists();
+
+            String query = "SELECT version, checksum FROM " + MIGRATION_TABLE + " WHERE applied_at > ? ORDER BY applied_at DESC";
+            List<String> migrationsToRollback = new ArrayList<>();
+
+            try (PreparedStatement stmt = connection.prepareStatement(query)) {
+                stmt.setTimestamp(1, Timestamp.valueOf(rollbackDate));
+                try (ResultSet rs = stmt.executeQuery()) {
+                    while (rs.next()) {
+                        String version = rs.getString("version");
+                        migrationsToRollback.add(version);
+                    }
+                }
+            }
+
+            if (migrationsToRollback.isEmpty()) {
+                logger.info("No migrations to rollback after {}", rollbackDate);
+                return;
+            }
+
+            logger.info("Found {} migrations to rollback.", migrationsToRollback.size());
+
+            for (String version : migrationsToRollback) {
+                String rollbackScriptName = "R" + version + "__rollback.sql";
+                File rollbackFile = new File(MIGRATION_DIR, rollbackScriptName);
+
+                if (!rollbackFile.exists()) {
+                    logger.warn("Rollback script not found for version {}: {}", version, rollbackScriptName);
+                    continue;
+                }
+
+                logger.info("Rolling back migration version {} using file {}", version, rollbackFile.getName());
+                String rollbackScript = readSqlFromFile(rollbackFile);
+                executor.executeMigration(rollbackScript);
+
+                removeMigrationRecord(version);
+                logger.info("Rolled back migration version {} successfully.", version);
+            }
+        } catch (SQLException e) {
+            logger.error("Error during rollback: {}", e.getMessage(), e);
+        }
+    }
+    private void removeMigrationRecord(String version) throws SQLException {
+        String sql = "DELETE FROM " + MIGRATION_TABLE + " WHERE version = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, version);
+            stmt.executeUpdate();
         }
     }
 

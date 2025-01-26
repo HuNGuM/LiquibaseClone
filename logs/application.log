@@ -703,3 +703,636 @@ CREATE UNIQUE INDEX idx_employee_projects ON employee_projects(employee_id, proj
 2025-01-25 12:12:59 INFO  o.example.migration.MigrationManager - Marked migration as applied: version 2
 2025-01-25 12:12:59 INFO  o.example.migration.MigrationManager - Migration applied successfully: version 2
 2025-01-25 12:12:59 INFO  org.example.migration.MigrationMain - Миграция успешно завершена.
+2025-01-26 10:09:59 INFO  org.example.migration.MigrationMain - Запуск программы управления миграциями...
+2025-01-26 10:09:59 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-26 10:09:59 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-26 10:09:59 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-26 10:10:08 INFO  org.example.migration.MigrationMain - Запуск миграций...
+2025-01-26 10:10:08 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-26 10:10:08 INFO  o.example.migration.MigrationManager - Found 2 migration files.
+2025-01-26 10:10:08 INFO  o.example.migration.MigrationManager - Migration already applied: version 1, file V1__initial_schema.sql
+2025-01-26 10:10:08 INFO  o.example.migration.MigrationManager - Migration already applied: version 2, file V2__add_constraints.sql
+2025-01-26 10:10:08 INFO  org.example.migration.MigrationMain - Миграции успешно завершены.
+2025-01-26 10:10:35 INFO  org.example.migration.MigrationMain - Запуск программы управления миграциями...
+2025-01-26 10:10:36 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-26 10:10:36 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-26 10:10:36 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-26 10:10:52 INFO  org.example.migration.MigrationMain - Введите дату отката в формате 'YYYY-MM-DD HH:MM:SS':
+2025-01-26 10:11:30 INFO  org.example.migration.MigrationMain - Попытка откатить миграции до 2025-01-25T10:00
+2025-01-26 10:11:30 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-26 10:11:30 INFO  o.example.migration.MigrationManager - Found 2 migrations to rollback.
+2025-01-26 10:11:30 WARN  o.example.migration.MigrationManager - Rollback script not found for version 2: R2__rollback.sql
+2025-01-26 10:11:30 WARN  o.example.migration.MigrationManager - Rollback script not found for version 1: R1__rollback.sql
+2025-01-26 10:11:30 INFO  org.example.migration.MigrationMain - Откат миграций выполнен до 2025-01-25T10:00
+2025-01-26 10:15:13 INFO  org.example.migration.MigrationMain - Запуск программы управления миграциями...
+2025-01-26 10:15:14 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-26 10:15:14 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-26 10:15:14 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-26 10:15:19 INFO  org.example.migration.MigrationMain - Введите дату отката в формате 'YYYY-MM-DD HH:MM:SS':
+2025-01-26 10:15:32 INFO  org.example.migration.MigrationMain - Попытка откатить миграции до 2025-01-26T10:00
+2025-01-26 10:15:32 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-26 10:15:32 INFO  o.example.migration.MigrationManager - No migrations to rollback after 2025-01-26T10:00
+2025-01-26 10:15:32 INFO  org.example.migration.MigrationMain - Откат миграций выполнен до 2025-01-26T10:00
+2025-01-26 10:16:20 INFO  org.example.migration.MigrationMain - Запуск программы управления миграциями...
+2025-01-26 10:16:21 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-26 10:16:21 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-26 10:16:21 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-26 10:16:25 INFO  org.example.migration.MigrationMain - Введите дату отката в формате 'YYYY-MM-DD HH:MM:SS':
+2025-01-26 10:16:32 INFO  org.example.migration.MigrationMain - Попытка откатить миграции до 2025-01-26T09:00
+2025-01-26 10:16:32 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-26 10:16:32 INFO  o.example.migration.MigrationManager - No migrations to rollback after 2025-01-26T09:00
+2025-01-26 10:16:32 INFO  org.example.migration.MigrationMain - Откат миграций выполнен до 2025-01-26T09:00
+2025-01-26 10:17:37 INFO  org.example.migration.MigrationMain - Запуск программы управления миграциями...
+2025-01-26 10:17:38 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-26 10:17:38 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-26 10:17:38 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-26 10:17:42 INFO  org.example.migration.MigrationMain - Введите дату отката в формате 'YYYY-MM-DD HH:MM:SS':
+2025-01-26 10:17:49 INFO  org.example.migration.MigrationMain - Попытка откатить миграции до 2025-01-26T09:00
+2025-01-26 10:17:49 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-26 10:17:49 INFO  o.example.migration.MigrationManager - No migrations to rollback after 2025-01-26T09:00
+2025-01-26 10:17:49 INFO  org.example.migration.MigrationMain - Откат миграций выполнен до 2025-01-26T09:00
+2025-01-26 10:19:27 INFO  org.example.migration.MigrationMain - Запуск программы управления миграциями...
+2025-01-26 10:19:28 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-26 10:19:28 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-26 10:19:28 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-26 10:19:34 INFO  org.example.migration.MigrationMain - Запуск миграций...
+2025-01-26 10:19:34 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-26 10:19:34 INFO  o.example.migration.MigrationManager - Found 3 migration files.
+2025-01-26 10:19:34 INFO  o.example.migration.MigrationManager - Migration already applied: version 1, file V1__initial_schema.sql
+2025-01-26 10:19:34 INFO  o.example.migration.MigrationManager - Migration already applied: version 2, file V2__add_constraints.sql
+2025-01-26 10:19:34 INFO  org.example.migration.MigrationMain - Миграции успешно завершены.
+2025-01-26 10:19:56 INFO  org.example.migration.MigrationMain - Запуск программы управления миграциями...
+2025-01-26 10:19:57 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-26 10:19:57 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-26 10:19:57 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-26 10:20:01 INFO  org.example.migration.MigrationMain - Запуск миграций...
+2025-01-26 10:20:01 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-26 10:20:01 INFO  o.example.migration.MigrationManager - Found 3 migration files.
+2025-01-26 10:20:01 INFO  o.example.migration.MigrationManager - Migration already applied: version 1, file V1__initial_schema.sql
+2025-01-26 10:20:01 INFO  o.example.migration.MigrationManager - Migration already applied: version 2, file V2__add_constraints.sql
+2025-01-26 10:20:01 INFO  org.example.migration.MigrationMain - Миграции успешно завершены.
+2025-01-26 10:20:33 INFO  org.example.migration.MigrationMain - Запуск программы управления миграциями...
+2025-01-26 10:20:34 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-26 10:20:34 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-26 10:20:34 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-26 10:20:38 INFO  org.example.migration.MigrationMain - Запуск миграций...
+2025-01-26 10:20:38 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-26 10:20:38 INFO  o.example.migration.MigrationManager - Found 3 migration files.
+2025-01-26 10:20:38 INFO  o.example.migration.MigrationManager - Applying migration: version 1, file V1__initial_schema.sql
+2025-01-26 10:20:38 INFO  o.e.migration.MigrationExecutor - Starting migration execution with script: -- V1__initial_schema.sql
+
+-- Создание таблицы "departments"
+CREATE TABLE departments (
+                             id SERIAL PRIMARY KEY,
+                             name VARCHAR(100) NOT NULL
+);
+
+-- Создание таблицы "employees"
+CREATE TABLE employees (
+                           id SERIAL PRIMARY KEY,
+                           name VARCHAR(100) NOT NULL,
+                           department_id INT REFERENCES departments(id)
+);
+
+-- Создание таблицы "projects"
+CREATE TABLE projects (
+                          id SERIAL PRIMARY KEY,
+                          name VARCHAR(100) NOT NULL
+);
+
+-- Создание таблицы "employee_projects" (Many-to-Many связь между сотрудниками и проектами)
+CREATE TABLE employee_projects (
+                                   employee_id INT REFERENCES employees(id),
+                                   project_id INT REFERENCES projects(id),
+                                   PRIMARY KEY (employee_id, project_id)
+);
+
+-- Вставка начальных данных
+-- Вставка начальных данных в таблицу "departments"
+INSERT INTO departments (name)
+VALUES
+    ('HR'),
+    ('Engineering'),
+    ('Sales'),
+    ('Marketing'),
+    ('IT Support'),
+    ('Customer Service'),
+    ('Logistics'),
+    ('Finance'),
+    ('Legal'),
+    ('Research and Development');
+-- Вставка сотрудников
+INSERT INTO employees (name, department_id)
+VALUES
+    ('Alice', 1),
+    ('Bob', 2),
+    ('Charlie', 3),
+    ('Diana', 4),
+    ('Eve', 5),
+    ('Frank', 6),
+    ('Grace', 7),
+    ('Heidi', 8),
+    ('Ivan', 9),
+    ('Judy', 10),
+    ('Kyle', 1),
+    ('Laura', 2),
+    ('Mike', 3),
+    ('Nina', 4),
+    ('Oscar', 5),
+    ('Paul', 6),
+    ('Quinn', 7),
+    ('Rita', 8),
+    ('Steve', 9),
+    ('Tina', 10),
+    ('Uma', 1),
+    ('Victor', 2),
+    ('Wendy', 3),
+    ('Xander', 4),
+    ('Yasmine', 5),
+    ('Zane', 6),
+    ('Aaron', 7),
+    ('Bella', 8),
+    ('Carl', 9),
+    ('Dana', 10),
+    ('Elliot', 1),
+    ('Fiona', 2),
+    ('Gabe', 3),
+    ('Holly', 4),
+    ('Ian', 5),
+    ('Jack', 6),
+    ('Kara', 7),
+    ('Liam', 8),
+    ('Mona', 9),
+    ('Nolan', 10),
+    ('Olivia', 1),
+    ('Peter', 2),
+    ('Quincy', 3),
+    ('Rachel', 4),
+    ('Sam', 5),
+    ('Tara', 6),
+    ('Ursula', 7),
+    ('Vince', 8),
+    ('Willow', 9),
+    ('Xena', 10),
+    ('Yuri', 1),
+    ('Zoey', 2),
+    ('Adrian', 3),
+    ('Blair', 4),
+    ('Cody', 5),
+    ('Daphne', 6),
+    ('Ethan', 7),
+    ('Farrah', 8),
+    ('Gordon', 9),
+    ('Harper', 10),
+    ('Isla', 1),
+    ('Jonas', 2),
+    ('Kelsey', 3),
+    ('Logan', 4),
+    ('Maya', 5),
+    ('Nathan', 6),
+    ('Olga', 7),
+    ('Penny', 8),
+    ('Quentin', 9),
+    ('Rebecca', 10),
+    ('Sophie', 1),
+    ('Thomas', 2),
+    ('Ulysses', 3),
+    ('Valerie', 4),
+    ('Warren', 5),
+    ('Ximena', 6),
+    ('Yara', 7),
+    ('Zack', 8),
+    ('Amber', 9),
+    ('Brad', 10),
+    ('Carmen', 1),
+    ('Derek', 2),
+    ('Ella', 3),
+    ('Floyd', 4),
+    ('Gwen', 5),
+    ('Hank', 6),
+    ('Ivy', 7),
+    ('Jasper', 8),
+    ('Kaitlyn', 9),
+    ('Landon', 10),
+    ('Wowa', 1),  -- Новый работник
+    ('Jan', 2), -- Новый работник
+    ('Misha', 3),  -- Новый работник
+    ('Vanya', 4), -- Новый работник
+    ('Arsenij', 5),  -- Новый работник
+    ('Zhenia', 6), -- Новый работник
+    ('Vita', 7),  -- Новый работник
+    ('Iosif', 8),   -- Новый работник
+    ('Katya', 9), -- Новый работник
+    ('Petrosyan', 10);
+-- Вставка начальных данных в таблицу "projects"
+INSERT INTO projects (name)
+VALUES
+    ('Project Alpha'),
+    ('Project Beta'),
+    ('Project Gamma'),
+    ('Project Delta'),
+    ('Project Epsilon'),
+    ('Project Zeta'),
+    ('Project Eta'),
+    ('Project Theta'),
+    ('Project Iota'),
+    ('Project Kappa'),
+    ('Project Lambda'),
+    ('Project Mu'),
+    ('Project Nu'),
+    ('Project Xi'),
+    ('Project Omicron'),
+    ('Project Pi'),
+    ('Project Rho'),
+    ('Project Sigma'),
+    ('Project Tau'),
+    ('Project Upsilon'),
+    ('Project Phi'),
+    ('Project Chi'),
+    ('Project Psi'),
+    ('Project Omega'),
+    ('Project Apollo'),
+    ('Project Hermes'),
+    ('Project Artemis'),
+    ('Project Demeter'),
+    ('Project Hephaestus'),
+    ('Project Poseidon');
+
+
+-- Назначение каждому сотруднику уникального проекта
+INSERT INTO employee_projects (employee_id, project_id)
+SELECT e.id AS employee_id, p.id AS project_id
+FROM employees e
+         JOIN projects p
+              ON e.id % 30 + 1 = p.id;
+
+
+2025-01-26 10:20:38 INFO  o.e.migration.MigrationExecutor - Migration executed successfully.
+2025-01-26 10:20:38 INFO  o.example.migration.MigrationManager - Executed migration from file: V1__initial_schema.sql
+2025-01-26 10:20:38 INFO  o.example.migration.MigrationManager - Marked migration as applied: version 1
+2025-01-26 10:20:38 INFO  o.example.migration.MigrationManager - Migration applied successfully: version 1
+2025-01-26 10:20:38 INFO  o.example.migration.MigrationManager - Applying migration: version 2, file V2__add_constraints.sql
+2025-01-26 10:20:38 INFO  o.e.migration.MigrationExecutor - Starting migration execution with script: -- V2__add_constraints.sql
+
+-- Добавление уникального индекса на поле "name" в таблице "employees", чтобы гарантировать уникальность имени сотрудника
+CREATE UNIQUE INDEX idx_employees_name ON employees(name);
+
+-- Добавление не NULL ограничения на поле "name" в таблице "projects"
+ALTER TABLE projects ALTER COLUMN name SET NOT NULL;
+
+-- Добавление ограничения на длину имени в таблице "departments"
+ALTER TABLE departments ADD CONSTRAINT chk_departments_name_length CHECK (char_length(name) >= 1);
+
+-- Добавление индекса на поле "department_id" в таблице "employees" для ускорения поиска сотрудников по отделу
+CREATE INDEX idx_employees_department_id ON employees(department_id);
+
+-- Добавление ограничения на поля "employee_id" и "project_id" в таблице "employee_projects" для обеспечения целостности данных
+ALTER TABLE employee_projects
+    ADD CONSTRAINT fk_employee FOREIGN KEY (employee_id) REFERENCES employees(id) ON DELETE CASCADE,
+    ADD CONSTRAINT fk_project FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE;
+
+-- Добавление ограничения на уникальность в таблице "employee_projects", чтобы избежать дублирования записей
+CREATE UNIQUE INDEX idx_employee_projects ON employee_projects(employee_id, project_id);
+
+2025-01-26 10:20:38 INFO  o.e.migration.MigrationExecutor - Migration executed successfully.
+2025-01-26 10:20:38 INFO  o.example.migration.MigrationManager - Executed migration from file: V2__add_constraints.sql
+2025-01-26 10:20:38 INFO  o.example.migration.MigrationManager - Marked migration as applied: version 2
+2025-01-26 10:20:38 INFO  o.example.migration.MigrationManager - Migration applied successfully: version 2
+2025-01-26 10:20:38 INFO  org.example.migration.MigrationMain - Миграции успешно завершены.
+2025-01-26 10:20:48 INFO  org.example.migration.MigrationMain - Запуск программы управления миграциями...
+2025-01-26 10:20:49 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-26 10:20:49 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-26 10:20:49 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-26 10:20:54 INFO  org.example.migration.MigrationMain - Введите дату отката в формате 'YYYY-MM-DD HH:MM:SS':
+2025-01-26 10:21:18 INFO  org.example.migration.MigrationMain - Попытка откатить миграции до 2025-01-26T10:19
+2025-01-26 10:21:18 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-26 10:21:18 INFO  o.example.migration.MigrationManager - Found 2 migrations to rollback.
+2025-01-26 10:21:18 WARN  o.example.migration.MigrationManager - Rollback script not found for version 2: R2__rollback.sql
+2025-01-26 10:21:18 INFO  o.example.migration.MigrationManager - Rolling back migration version 1 using file R1__rollback.sql
+2025-01-26 10:21:18 INFO  o.e.migration.MigrationExecutor - Starting migration execution with script: 
+2025-01-26 10:21:18 INFO  o.e.migration.MigrationExecutor - Migration executed successfully.
+2025-01-26 10:21:18 INFO  o.example.migration.MigrationManager - Rolled back migration version 1 successfully.
+2025-01-26 10:21:18 INFO  org.example.migration.MigrationMain - Откат миграций выполнен до 2025-01-26T10:19
+2025-01-26 10:23:08 INFO  org.example.migration.MigrationMain - Запуск программы управления миграциями...
+2025-01-26 10:23:09 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-26 10:23:09 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-26 10:23:09 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-26 10:23:13 INFO  org.example.migration.MigrationMain - Введите дату отката в формате 'YYYY-MM-DD HH:MM:SS':
+2025-01-26 10:23:28 INFO  org.example.migration.MigrationMain - Попытка откатить миграции до 2025-01-26T10:19
+2025-01-26 10:23:28 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-26 10:23:28 INFO  o.example.migration.MigrationManager - Found 1 migrations to rollback.
+2025-01-26 10:23:28 INFO  o.example.migration.MigrationManager - Rolling back migration version 2 using file R2__rollback.sql
+2025-01-26 10:23:28 INFO  o.e.migration.MigrationExecutor - Starting migration execution with script: -- R2__rollback_initial_schema.sql
+
+-- Удаление уникального индекса на поле "name" в таблице "employees"
+DROP INDEX IF EXISTS idx_employees_name;
+
+-- Снятие NOT NULL ограничения с поля "name" в таблице "projects"
+ALTER TABLE projects ALTER COLUMN name DROP NOT NULL;
+
+-- Удаление ограничения на длину имени в таблице "departments"
+ALTER TABLE departments DROP CONSTRAINT IF EXISTS chk_departments_name_length;
+
+-- Удаление индекса на поле "department_id" в таблице "employees"
+DROP INDEX IF EXISTS idx_employees_department_id;
+
+-- Удаление ограничений внешнего ключа из таблицы "employee_projects"
+ALTER TABLE employee_projects
+    DROP CONSTRAINT IF EXISTS fk_employee,
+    DROP CONSTRAINT IF EXISTS fk_project;
+
+-- Удаление уникального индекса на поля "employee_id" и "project_id" в таблице "employee_projects"
+DROP INDEX IF EXISTS idx_employee_projects;
+2025-01-26 10:23:28 INFO  o.e.migration.MigrationExecutor - Migration executed successfully.
+2025-01-26 10:23:28 INFO  o.example.migration.MigrationManager - Rolled back migration version 2 successfully.
+2025-01-26 10:23:28 INFO  org.example.migration.MigrationMain - Откат миграций выполнен до 2025-01-26T10:19
+2025-01-26 10:25:11 INFO  org.example.migration.MigrationMain - Запуск программы управления миграциями...
+2025-01-26 10:25:11 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-26 10:25:11 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-26 10:25:11 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-26 10:25:24 INFO  org.example.migration.MigrationMain - Запуск миграций...
+2025-01-26 10:25:24 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-26 10:25:24 INFO  o.example.migration.MigrationManager - Found 4 migration files.
+2025-01-26 10:25:24 INFO  o.example.migration.MigrationManager - Applying migration: version 1, file V1__initial_schema.sql
+2025-01-26 10:25:24 INFO  o.e.migration.MigrationExecutor - Starting migration execution with script: -- V1__initial_schema.sql
+
+-- Создание таблицы "departments"
+CREATE TABLE departments (
+                             id SERIAL PRIMARY KEY,
+                             name VARCHAR(100) NOT NULL
+);
+
+-- Создание таблицы "employees"
+CREATE TABLE employees (
+                           id SERIAL PRIMARY KEY,
+                           name VARCHAR(100) NOT NULL,
+                           department_id INT REFERENCES departments(id)
+);
+
+-- Создание таблицы "projects"
+CREATE TABLE projects (
+                          id SERIAL PRIMARY KEY,
+                          name VARCHAR(100) NOT NULL
+);
+
+-- Создание таблицы "employee_projects" (Many-to-Many связь между сотрудниками и проектами)
+CREATE TABLE employee_projects (
+                                   employee_id INT REFERENCES employees(id),
+                                   project_id INT REFERENCES projects(id),
+                                   PRIMARY KEY (employee_id, project_id)
+);
+
+-- Вставка начальных данных
+-- Вставка начальных данных в таблицу "departments"
+INSERT INTO departments (name)
+VALUES
+    ('HR'),
+    ('Engineering'),
+    ('Sales'),
+    ('Marketing'),
+    ('IT Support'),
+    ('Customer Service'),
+    ('Logistics'),
+    ('Finance'),
+    ('Legal'),
+    ('Research and Development');
+-- Вставка сотрудников
+INSERT INTO employees (name, department_id)
+VALUES
+    ('Alice', 1),
+    ('Bob', 2),
+    ('Charlie', 3),
+    ('Diana', 4),
+    ('Eve', 5),
+    ('Frank', 6),
+    ('Grace', 7),
+    ('Heidi', 8),
+    ('Ivan', 9),
+    ('Judy', 10),
+    ('Kyle', 1),
+    ('Laura', 2),
+    ('Mike', 3),
+    ('Nina', 4),
+    ('Oscar', 5),
+    ('Paul', 6),
+    ('Quinn', 7),
+    ('Rita', 8),
+    ('Steve', 9),
+    ('Tina', 10),
+    ('Uma', 1),
+    ('Victor', 2),
+    ('Wendy', 3),
+    ('Xander', 4),
+    ('Yasmine', 5),
+    ('Zane', 6),
+    ('Aaron', 7),
+    ('Bella', 8),
+    ('Carl', 9),
+    ('Dana', 10),
+    ('Elliot', 1),
+    ('Fiona', 2),
+    ('Gabe', 3),
+    ('Holly', 4),
+    ('Ian', 5),
+    ('Jack', 6),
+    ('Kara', 7),
+    ('Liam', 8),
+    ('Mona', 9),
+    ('Nolan', 10),
+    ('Olivia', 1),
+    ('Peter', 2),
+    ('Quincy', 3),
+    ('Rachel', 4),
+    ('Sam', 5),
+    ('Tara', 6),
+    ('Ursula', 7),
+    ('Vince', 8),
+    ('Willow', 9),
+    ('Xena', 10),
+    ('Yuri', 1),
+    ('Zoey', 2),
+    ('Adrian', 3),
+    ('Blair', 4),
+    ('Cody', 5),
+    ('Daphne', 6),
+    ('Ethan', 7),
+    ('Farrah', 8),
+    ('Gordon', 9),
+    ('Harper', 10),
+    ('Isla', 1),
+    ('Jonas', 2),
+    ('Kelsey', 3),
+    ('Logan', 4),
+    ('Maya', 5),
+    ('Nathan', 6),
+    ('Olga', 7),
+    ('Penny', 8),
+    ('Quentin', 9),
+    ('Rebecca', 10),
+    ('Sophie', 1),
+    ('Thomas', 2),
+    ('Ulysses', 3),
+    ('Valerie', 4),
+    ('Warren', 5),
+    ('Ximena', 6),
+    ('Yara', 7),
+    ('Zack', 8),
+    ('Amber', 9),
+    ('Brad', 10),
+    ('Carmen', 1),
+    ('Derek', 2),
+    ('Ella', 3),
+    ('Floyd', 4),
+    ('Gwen', 5),
+    ('Hank', 6),
+    ('Ivy', 7),
+    ('Jasper', 8),
+    ('Kaitlyn', 9),
+    ('Landon', 10),
+    ('Wowa', 1),  -- Новый работник
+    ('Jan', 2), -- Новый работник
+    ('Misha', 3),  -- Новый работник
+    ('Vanya', 4), -- Новый работник
+    ('Arsenij', 5),  -- Новый работник
+    ('Zhenia', 6), -- Новый работник
+    ('Vita', 7),  -- Новый работник
+    ('Iosif', 8),   -- Новый работник
+    ('Katya', 9), -- Новый работник
+    ('Petrosyan', 10);
+-- Вставка начальных данных в таблицу "projects"
+INSERT INTO projects (name)
+VALUES
+    ('Project Alpha'),
+    ('Project Beta'),
+    ('Project Gamma'),
+    ('Project Delta'),
+    ('Project Epsilon'),
+    ('Project Zeta'),
+    ('Project Eta'),
+    ('Project Theta'),
+    ('Project Iota'),
+    ('Project Kappa'),
+    ('Project Lambda'),
+    ('Project Mu'),
+    ('Project Nu'),
+    ('Project Xi'),
+    ('Project Omicron'),
+    ('Project Pi'),
+    ('Project Rho'),
+    ('Project Sigma'),
+    ('Project Tau'),
+    ('Project Upsilon'),
+    ('Project Phi'),
+    ('Project Chi'),
+    ('Project Psi'),
+    ('Project Omega'),
+    ('Project Apollo'),
+    ('Project Hermes'),
+    ('Project Artemis'),
+    ('Project Demeter'),
+    ('Project Hephaestus'),
+    ('Project Poseidon');
+
+
+-- Назначение каждому сотруднику уникального проекта
+INSERT INTO employee_projects (employee_id, project_id)
+SELECT e.id AS employee_id, p.id AS project_id
+FROM employees e
+         JOIN projects p
+              ON e.id % 30 + 1 = p.id;
+
+
+2025-01-26 10:25:24 INFO  o.e.migration.MigrationExecutor - Migration executed successfully.
+2025-01-26 10:25:24 INFO  o.example.migration.MigrationManager - Executed migration from file: V1__initial_schema.sql
+2025-01-26 10:25:24 INFO  o.example.migration.MigrationManager - Marked migration as applied: version 1
+2025-01-26 10:25:24 INFO  o.example.migration.MigrationManager - Migration applied successfully: version 1
+2025-01-26 10:25:24 INFO  o.example.migration.MigrationManager - Applying migration: version 2, file V2__add_constraints.sql
+2025-01-26 10:25:24 INFO  o.e.migration.MigrationExecutor - Starting migration execution with script: -- V2__add_constraints.sql
+
+-- Добавление уникального индекса на поле "name" в таблице "employees", чтобы гарантировать уникальность имени сотрудника
+CREATE UNIQUE INDEX idx_employees_name ON employees(name);
+
+-- Добавление не NULL ограничения на поле "name" в таблице "projects"
+ALTER TABLE projects ALTER COLUMN name SET NOT NULL;
+
+-- Добавление ограничения на длину имени в таблице "departments"
+ALTER TABLE departments ADD CONSTRAINT chk_departments_name_length CHECK (char_length(name) >= 1);
+
+-- Добавление индекса на поле "department_id" в таблице "employees" для ускорения поиска сотрудников по отделу
+CREATE INDEX idx_employees_department_id ON employees(department_id);
+
+-- Добавление ограничения на поля "employee_id" и "project_id" в таблице "employee_projects" для обеспечения целостности данных
+ALTER TABLE employee_projects
+    ADD CONSTRAINT fk_employee FOREIGN KEY (employee_id) REFERENCES employees(id) ON DELETE CASCADE,
+    ADD CONSTRAINT fk_project FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE;
+
+-- Добавление ограничения на уникальность в таблице "employee_projects", чтобы избежать дублирования записей
+CREATE UNIQUE INDEX idx_employee_projects ON employee_projects(employee_id, project_id);
+
+2025-01-26 10:25:24 INFO  o.e.migration.MigrationExecutor - Migration executed successfully.
+2025-01-26 10:25:24 INFO  o.example.migration.MigrationManager - Executed migration from file: V2__add_constraints.sql
+2025-01-26 10:25:24 INFO  o.example.migration.MigrationManager - Marked migration as applied: version 2
+2025-01-26 10:25:24 INFO  o.example.migration.MigrationManager - Migration applied successfully: version 2
+2025-01-26 10:25:24 INFO  org.example.migration.MigrationMain - Миграции успешно завершены.
+2025-01-26 10:25:35 INFO  org.example.migration.MigrationMain - Запуск программы управления миграциями...
+2025-01-26 10:25:35 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-26 10:25:35 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-26 10:25:35 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-26 10:25:40 INFO  org.example.migration.MigrationMain - Введите дату отката в формате 'YYYY-MM-DD HH:MM:SS':
+2025-01-26 10:25:54 INFO  org.example.migration.MigrationMain - Попытка откатить миграции до 2025-01-26T10:25
+2025-01-26 10:25:54 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-26 10:25:54 INFO  o.example.migration.MigrationManager - Found 2 migrations to rollback.
+2025-01-26 10:25:54 INFO  o.example.migration.MigrationManager - Rolling back migration version 2 using file R2__rollback.sql
+2025-01-26 10:25:54 INFO  o.e.migration.MigrationExecutor - Starting migration execution with script: -- R2__rollback_initial_schema.sql
+
+-- Удаление уникального индекса на поле "name" в таблице "employees"
+DROP INDEX IF EXISTS idx_employees_name;
+
+-- Снятие NOT NULL ограничения с поля "name" в таблице "projects"
+ALTER TABLE projects ALTER COLUMN name DROP NOT NULL;
+
+-- Удаление ограничения на длину имени в таблице "departments"
+ALTER TABLE departments DROP CONSTRAINT IF EXISTS chk_departments_name_length;
+
+-- Удаление индекса на поле "department_id" в таблице "employees"
+DROP INDEX IF EXISTS idx_employees_department_id;
+
+-- Удаление ограничений внешнего ключа из таблицы "employee_projects"
+ALTER TABLE employee_projects
+    DROP CONSTRAINT IF EXISTS fk_employee,
+    DROP CONSTRAINT IF EXISTS fk_project;
+
+-- Удаление уникального индекса на поля "employee_id" и "project_id" в таблице "employee_projects"
+DROP INDEX IF EXISTS idx_employee_projects;
+2025-01-26 10:25:54 INFO  o.e.migration.MigrationExecutor - Migration executed successfully.
+2025-01-26 10:25:54 INFO  o.example.migration.MigrationManager - Rolled back migration version 2 successfully.
+2025-01-26 10:25:54 INFO  o.example.migration.MigrationManager - Rolling back migration version 1 using file R1__rollback.sql
+2025-01-26 10:25:54 INFO  o.e.migration.MigrationExecutor - Starting migration execution with script: -- R1__rollback_initial_schema.sql
+
+-- Удаление всех данных из таблицы "employee_projects"
+DELETE FROM employee_projects;
+
+-- Удаление всех данных из таблицы "employees"
+DELETE FROM employees;
+
+-- Удаление всех данных из таблицы "projects"
+DELETE FROM projects;
+
+-- Удаление всех данных из таблицы "departments"
+DELETE FROM departments;
+
+-- Удаление таблицы "employee_projects"
+DROP TABLE IF EXISTS employee_projects;
+
+-- Удаление таблицы "employees"
+DROP TABLE IF EXISTS employees;
+
+-- Удаление таблицы "projects"
+DROP TABLE IF EXISTS projects;
+
+-- Удаление таблицы "departments"
+DROP TABLE IF EXISTS departments;
+
+2025-01-26 10:25:54 INFO  o.e.migration.MigrationExecutor - Migration executed successfully.
+2025-01-26 10:25:54 INFO  o.example.migration.MigrationManager - Rolled back migration version 1 successfully.
+2025-01-26 10:25:54 INFO  org.example.migration.MigrationMain - Откат миграций выполнен до 2025-01-26T10:25
