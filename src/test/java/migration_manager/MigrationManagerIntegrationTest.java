@@ -41,7 +41,6 @@ public class MigrationManagerIntegrationTest {
 
     @AfterEach
     void tearDown() throws SQLException {
-        // Clean up after each test (rollback changes, clear the migration table, etc.)
         try (Statement stmt = connection.createStatement()) {
             stmt.execute("DROP TABLE IF EXISTS migrations");
         }

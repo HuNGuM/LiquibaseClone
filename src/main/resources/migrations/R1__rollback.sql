@@ -1,3 +1,4 @@
+
 -- R1__rollback_initial_schema.sql
 
 -- Удаление всех данных из таблицы "employee_projects"

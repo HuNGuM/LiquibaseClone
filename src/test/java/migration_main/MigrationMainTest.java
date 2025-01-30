@@ -34,11 +34,7 @@ class MigrationMainTest {
         // Arrange
         when(scanner.nextInt()).thenReturn(1); // Выбор: "1" (запуск миграций)
         doNothing().when(migrationManager).runMigrations();
-
-        // Act
         migrationMain.run(scanner, migrationManager);
-
-        // Assert
         verify(migrationManager, times(1)).runMigrations();
     }
 
@@ -85,5 +81,30 @@ class MigrationMainTest {
 
         // Assert
         verifyNoInteractions(migrationManager);
+    }
+    @Test
+    void testMain_runMigrations() {
+        // Arrange
+        doNothing().when(migrationManager).runMigrations();
+
+        // Act
+        migrationManager.runMigrations();
+
+        // Assert
+        verify(migrationManager, times(1)).runMigrations();
+    }
+
+    @Test
+    void testMain_rollbackToDate() {
+        // Arrange
+        LocalDateTime rollbackDate = LocalDateTime.now();
+        doNothing().when(migrationManager).rollbackToDate(rollbackDate);
+
+        // Act
+        MigrationMain.main(new String[]{"2"}); // Simulate user input choice 2
+        migrationManager.rollbackToDate(rollbackDate);
+
+        // Assert
+        verify(migrationManager, times(1)).rollbackToDate(rollbackDate);
     }
 }

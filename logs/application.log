@@ -8789,3 +8789,932 @@ INSERT INTO test_table (id, name) VALUES (1, 'Another Test Name') [23505-214]
 2025-01-26 15:47:43 INFO  migrations.MigrationValidator - Validating SQL syntax: SELECT * FROM non_existing_table
 2025-01-26 15:47:43 ERROR migrations.MigrationValidator - SQL syntax is invalid: Syntax error
 2025-01-26 15:47:43 INFO  migrations.MigrationValidator - SQL is safe for execution.
+2025-01-29 19:19:13 INFO  o.e.migration.MigrationExecutor - Starting migration execution with script: CREATE TABLE IF NOT EXISTS another_table (id INT, description VARCHAR(255)); INSERT INTO another_table (id, description) VALUES (1, 'Description');
+2025-01-29 19:19:14 INFO  o.e.migration.MigrationExecutor - Migration executed successfully.
+2025-01-29 19:19:14 INFO  o.e.migration.MigrationExecutor - Starting migration execution with script: CREATE TABLE IF NOT EXISTS test_table (id INT, name VARCHAR(255)); INSERT INTO test_table (id, name) VALUES (1, 'Test');
+2025-01-29 19:19:14 INFO  o.e.migration.MigrationExecutor - Migration executed successfully.
+2025-01-29 19:19:16 INFO  o.e.migration.MigrationExecutor - Starting migration execution with script: SELECT * FROM test_table
+2025-01-29 19:19:16 INFO  o.e.migration.MigrationExecutor - Migration executed successfully.
+2025-01-29 19:19:16 INFO  org.example.migration.MigrationMain - Запуск программы управления миграциями...
+2025-01-29 19:19:16 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-29 19:19:16 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-29 19:19:16 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-29 19:19:16 ERROR org.example.migration.MigrationMain - Произошла ошибка: null
+java.util.NoSuchElementException: null
+	at java.base/java.util.Scanner.throwFor(Scanner.java:945)
+	at java.base/java.util.Scanner.next(Scanner.java:1602)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2267)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2221)
+	at org.example.migration.MigrationMain.run(MigrationMain.java:31)
+	at org.example.migration.MigrationMain.main(MigrationMain.java:20)
+	at migration_main.MigrationMainIntegrationTest.testMain_rollbackToDate(MigrationMainIntegrationTest.java:47)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:727)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:124)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:99)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:94)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:63)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92)
+	at jdk.proxy2/jdk.proxy2.$Proxy6.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:200)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:121)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+2025-01-29 19:19:17 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-29 19:19:17 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-29 19:19:17 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-29 19:19:17 INFO  org.example.migration.MigrationMain - Запуск миграций...
+2025-01-29 19:19:17 INFO  org.example.migration.MigrationMain - Миграции успешно завершены.
+2025-01-29 19:19:17 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-29 19:19:17 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-29 19:19:17 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-29 19:19:17 INFO  org.example.migration.MigrationMain - Введите дату отката в формате 'YYYY-MM-DD HH:MM:SS':
+2025-01-29 19:19:17 INFO  org.example.migration.MigrationMain - Попытка откатить миграции до 2025-01-01T12:00
+2025-01-29 19:19:17 INFO  org.example.migration.MigrationMain - Откат миграций выполнен до 2025-01-01T12:00
+2025-01-29 19:19:17 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-29 19:19:17 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-29 19:19:17 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-29 19:19:17 INFO  org.example.migration.MigrationMain - Введите дату отката в формате 'YYYY-MM-DD HH:MM:SS':
+2025-01-29 19:19:17 ERROR org.example.migration.MigrationMain - Неверный формат даты: invalid-date
+2025-01-29 19:19:17 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-29 19:19:17 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-29 19:19:17 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-29 19:19:17 WARN  org.example.migration.MigrationMain - Некорректный выбор. Завершение работы.
+2025-01-29 19:19:17 INFO  org.testcontainers.images.PullPolicy - Image pull policy will be performed by: DefaultPullPolicy()
+2025-01-29 19:19:17 INFO  o.t.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+2025-01-29 19:19:17 INFO  o.testcontainers.DockerClientFactory - Testcontainers version: 1.20.4
+2025-01-29 19:19:18 INFO  o.t.d.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.NpipeSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+2025-01-29 19:19:18 INFO  o.t.d.DockerMachineClientProviderStrategy - docker-machine executable was not found on PATH ([C:\Program Files\Common Files\Oracle\Java\javapath, C:\Program Files (x86)\Common Files\Oracle\Java\javapath, C:\Windows\system32, C:\Windows, C:\Windows\System32\Wbem, C:\Windows\System32\WindowsPowerShell\v1.0\, C:\Windows\System32\OpenSSH\, C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common, C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR, C:\Program Files\Git\cmd, C:\Program Files\Docker\Docker\resources\bin, C:\Users\HuNGuM\gradle-8.12-bin\gradle-8.12\bin, C:\Program Files\PostgreSQL\17\bin, C:\Users\HuNGuM\AppData\Local\Programs\Python\Python313\Scripts\, C:\Users\HuNGuM\AppData\Local\Programs\Python\Python313\, C:\Users\HuNGuM\AppData\Local\Programs\Python\Launcher\, C:\Users\HuNGuM\AppData\Local\Microsoft\WindowsApps, C:\Program Files\JetBrains\IntelliJ IDEA 2024.3\bin, , C:\Program Files\PostgreSQL\17\bin])
+2025-01-29 19:19:18 ERROR o.t.d.DockerClientProviderStrategy - Could not find a valid Docker environment. Please check configuration. Attempted configurations were:
+As no valid configuration was found, execution cannot continue.
+See https://java.testcontainers.org/on_failure.html for more details.
+2025-01-29 19:19:19 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: INSERT INTO test_table (id, name) VALUES (1, 'Test Name')
+2025-01-29 19:19:19 INFO  migrations.MigrationScriptExecutor - Migration executed successfully.
+2025-01-29 19:19:19 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-29 19:19:19 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: INSERT INTO test_table (id, name) VALUES (2, 'New Test Name')
+2025-01-29 19:19:19 INFO  migrations.MigrationScriptExecutor - Migration executed successfully.
+2025-01-29 19:19:19 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-29 19:19:19 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: INSERT INTO test_table (id, name) VALUES (1, 'Test Name')
+2025-01-29 19:19:19 INFO  migrations.MigrationScriptExecutor - Migration executed successfully.
+2025-01-29 19:19:19 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-29 19:19:19 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: INSERT INTO test_table (id, name) VALUES (1, 'Another Test Name')
+2025-01-29 19:19:19 ERROR migrations.MigrationScriptExecutor - Error executing migration: Нарушение уникального индекса или первичного ключа: "PRIMARY KEY ON PUBLIC.TEST_TABLE(ID) ( /* key:1 */ 1, 'Test Name')"
+Unique index or primary key violation: "PRIMARY KEY ON PUBLIC.TEST_TABLE(ID) ( /* key:1 */ 1, 'Test Name')"; SQL statement:
+INSERT INTO test_table (id, name) VALUES (1, 'Another Test Name') [23505-214]
+2025-01-29 19:19:19 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-29 19:19:19 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: CREATE TABLE test(id INT)
+2025-01-29 19:19:19 INFO  migrations.MigrationScriptExecutor - Migration executed successfully.
+2025-01-29 19:19:19 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-29 19:19:19 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: CREATE TABLE test(id INT)
+2025-01-29 19:19:19 INFO  migrations.MigrationScriptExecutor - Migration executed successfully.
+2025-01-29 19:19:19 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-29 19:19:19 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: CREATE TABLE test(id INT)
+2025-01-29 19:19:19 ERROR migrations.MigrationScriptExecutor - Error executing migration: null
+2025-01-29 19:19:19 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-29 19:19:19 INFO  migrations.MigrationValidator - Validating SQL syntax: SELECT * FROM test_table
+2025-01-29 19:19:19 INFO  migrations.MigrationValidator - SQL syntax is valid.
+2025-01-29 19:19:19 WARN  migrations.MigrationValidator - Destructive operation detected in SQL: DROP TABLE test_table
+2025-01-29 19:19:19 INFO  migrations.MigrationValidator - Validating SQL syntax: SELECT * FROM non_existing_table
+2025-01-29 19:19:19 ERROR migrations.MigrationValidator - SQL syntax is invalid: Syntax error
+2025-01-29 19:19:20 INFO  migrations.MigrationValidator - SQL is safe for execution.
+2025-01-29 19:19:20 INFO  migrations.MigrationValidator - Validating SQL syntax: SELECT * FROM test_table
+2025-01-29 19:19:20 INFO  migrations.MigrationValidator - SQL syntax is valid.
+2025-01-29 19:19:20 WARN  migrations.MigrationValidator - Destructive operation detected in SQL: DROP TABLE test_table
+2025-01-29 19:19:20 INFO  migrations.MigrationValidator - Validating SQL syntax: SELECT * FROM non_existing_table
+2025-01-29 19:19:20 ERROR migrations.MigrationValidator - SQL syntax is invalid: Syntax error
+2025-01-29 19:19:20 INFO  migrations.MigrationValidator - SQL is safe for execution.
+2025-01-29 19:37:03 INFO  org.testcontainers.images.PullPolicy - Image pull policy will be performed by: DefaultPullPolicy()
+2025-01-29 19:37:04 INFO  o.t.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+2025-01-29 19:37:04 INFO  o.testcontainers.DockerClientFactory - Testcontainers version: 1.20.4
+2025-01-29 19:37:04 INFO  o.t.d.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.NpipeSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+2025-01-29 19:37:05 INFO  o.t.d.DockerClientProviderStrategy - Found Docker environment with local Npipe socket (npipe:////./pipe/docker_engine)
+2025-01-29 19:37:05 INFO  o.testcontainers.DockerClientFactory - Docker host IP address is localhost
+2025-01-29 19:37:05 INFO  o.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 27.3.1
+  API Version: 1.47
+  Operating System: Docker Desktop
+  Total Memory: 7784 MB
+  Labels: 
+    com.docker.desktop.address=npipe://\\.\pipe\docker_cli
+2025-01-29 19:37:06 INFO  tc.testcontainers/ryuk:0.11.0 - Creating container for image: testcontainers/ryuk:0.11.0
+2025-01-29 19:37:06 INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 is starting: 7676805badc12107512d2ea15051e5939d71ff2734129cb8c24f78a7d68fce3d
+2025-01-29 19:37:07 INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 started in PT1.2230024S
+2025-01-29 19:37:07 INFO  o.t.utility.RyukResourceReaper - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+2025-01-29 19:37:07 INFO  o.testcontainers.DockerClientFactory - Checking the system...
+2025-01-29 19:37:07 INFO  o.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
+2025-01-29 19:37:07 INFO  tc.postgres:13 - Creating container for image: postgres:13
+2025-01-29 19:37:07 INFO  tc.postgres:13 - Container postgres:13 is starting: 7ea5d0aeeb7ceb9e87abdb0502ec8f5da392f5175992c069a7e4649526bd684e
+2025-01-29 19:37:09 INFO  tc.postgres:13 - Container postgres:13 started in PT2.5715759S
+2025-01-29 19:37:09 INFO  tc.postgres:13 - Container is started (JDBC URL: jdbc:postgresql://localhost:53573/test_db?loggerLevel=OFF)
+2025-01-29 19:37:11 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-29 19:37:11 INFO  o.example.migration.MigrationManager - Found 4 migration files.
+2025-01-29 19:37:11 INFO  o.example.migration.MigrationManager - Migration already applied: version 1, file V1__initial_schema.sql
+2025-01-29 19:37:11 INFO  o.example.migration.MigrationManager - Migration already applied: version 2, file V2__add_constraints.sql
+2025-01-29 19:37:11 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-29 19:37:11 INFO  o.example.migration.MigrationManager - No migrations to rollback after 2025-01-29T19:37:11.289271800
+2025-01-29 19:37:11 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-29 19:37:11 INFO  o.example.migration.MigrationManager - Found 4 migration files.
+2025-01-29 19:37:11 INFO  o.example.migration.MigrationManager - Migration already applied: version 1, file V1__initial_schema.sql
+2025-01-29 19:37:11 INFO  o.example.migration.MigrationManager - Migration already applied: version 2, file V2__add_constraints.sql
+2025-01-29 19:37:12 INFO  o.e.migration.MigrationExecutor - Starting migration execution with script: CREATE TABLE IF NOT EXISTS another_table (id INT, description VARCHAR(255)); INSERT INTO another_table (id, description) VALUES (1, 'Description');
+2025-01-29 19:37:12 INFO  o.e.migration.MigrationExecutor - Migration executed successfully.
+2025-01-29 19:37:12 INFO  o.e.migration.MigrationExecutor - Starting migration execution with script: CREATE TABLE IF NOT EXISTS test_table (id INT, name VARCHAR(255)); INSERT INTO test_table (id, name) VALUES (1, 'Test');
+2025-01-29 19:37:12 INFO  o.e.migration.MigrationExecutor - Migration executed successfully.
+2025-01-29 19:37:15 INFO  o.e.migration.MigrationExecutor - Starting migration execution with script: SELECT * FROM test_table
+2025-01-29 19:37:16 INFO  o.e.migration.MigrationExecutor - Migration executed successfully.
+2025-01-29 19:37:16 INFO  org.example.migration.MigrationMain - Запуск программы управления миграциями...
+2025-01-29 19:37:16 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-29 19:37:16 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-29 19:37:16 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-29 19:37:16 ERROR org.example.migration.MigrationMain - Произошла ошибка: null
+java.util.NoSuchElementException: null
+	at java.base/java.util.Scanner.throwFor(Scanner.java:945)
+	at java.base/java.util.Scanner.next(Scanner.java:1602)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2267)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2221)
+	at org.example.migration.MigrationMain.run(MigrationMain.java:31)
+	at org.example.migration.MigrationMain.main(MigrationMain.java:20)
+	at migration_main.MigrationMainIntegrationTest.testMain_rollbackToDate(MigrationMainIntegrationTest.java:47)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:727)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:124)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:99)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:94)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:63)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92)
+	at jdk.proxy2/jdk.proxy2.$Proxy6.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:200)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:121)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+2025-01-29 19:37:17 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-29 19:37:17 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-29 19:37:17 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-29 19:37:17 INFO  org.example.migration.MigrationMain - Запуск миграций...
+2025-01-29 19:37:17 INFO  org.example.migration.MigrationMain - Миграции успешно завершены.
+2025-01-29 19:37:17 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-29 19:37:17 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-29 19:37:17 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-29 19:37:17 INFO  org.example.migration.MigrationMain - Введите дату отката в формате 'YYYY-MM-DD HH:MM:SS':
+2025-01-29 19:37:17 INFO  org.example.migration.MigrationMain - Попытка откатить миграции до 2025-01-01T12:00
+2025-01-29 19:37:17 INFO  org.example.migration.MigrationMain - Откат миграций выполнен до 2025-01-01T12:00
+2025-01-29 19:37:17 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-29 19:37:17 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-29 19:37:17 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-29 19:37:17 INFO  org.example.migration.MigrationMain - Введите дату отката в формате 'YYYY-MM-DD HH:MM:SS':
+2025-01-29 19:37:17 ERROR org.example.migration.MigrationMain - Неверный формат даты: invalid-date
+2025-01-29 19:37:17 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-29 19:37:17 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-29 19:37:17 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-29 19:37:17 WARN  org.example.migration.MigrationMain - Некорректный выбор. Завершение работы.
+2025-01-29 19:37:20 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: INSERT INTO test_table (id, name) VALUES (1, 'Test Name')
+2025-01-29 19:37:21 INFO  migrations.MigrationScriptExecutor - Migration executed successfully.
+2025-01-29 19:37:21 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-29 19:37:21 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: INSERT INTO test_table (id, name) VALUES (2, 'New Test Name')
+2025-01-29 19:37:21 INFO  migrations.MigrationScriptExecutor - Migration executed successfully.
+2025-01-29 19:37:21 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-29 19:37:21 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: INSERT INTO test_table (id, name) VALUES (1, 'Test Name')
+2025-01-29 19:37:21 INFO  migrations.MigrationScriptExecutor - Migration executed successfully.
+2025-01-29 19:37:21 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-29 19:37:21 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: INSERT INTO test_table (id, name) VALUES (1, 'Another Test Name')
+2025-01-29 19:37:21 ERROR migrations.MigrationScriptExecutor - Error executing migration: Нарушение уникального индекса или первичного ключа: "PRIMARY KEY ON PUBLIC.TEST_TABLE(ID) ( /* key:1 */ 1, 'Test Name')"
+Unique index or primary key violation: "PRIMARY KEY ON PUBLIC.TEST_TABLE(ID) ( /* key:1 */ 1, 'Test Name')"; SQL statement:
+INSERT INTO test_table (id, name) VALUES (1, 'Another Test Name') [23505-214]
+2025-01-29 19:37:21 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-29 19:37:21 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: CREATE TABLE test(id INT)
+2025-01-29 19:37:21 INFO  migrations.MigrationScriptExecutor - Migration executed successfully.
+2025-01-29 19:37:21 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-29 19:37:21 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: CREATE TABLE test(id INT)
+2025-01-29 19:37:21 INFO  migrations.MigrationScriptExecutor - Migration executed successfully.
+2025-01-29 19:37:21 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-29 19:37:21 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: CREATE TABLE test(id INT)
+2025-01-29 19:37:21 ERROR migrations.MigrationScriptExecutor - Error executing migration: null
+2025-01-29 19:37:21 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-29 19:37:21 INFO  migrations.MigrationValidator - Validating SQL syntax: SELECT * FROM test_table
+2025-01-29 19:37:21 INFO  migrations.MigrationValidator - SQL syntax is valid.
+2025-01-29 19:37:21 WARN  migrations.MigrationValidator - Destructive operation detected in SQL: DROP TABLE test_table
+2025-01-29 19:37:21 INFO  migrations.MigrationValidator - Validating SQL syntax: SELECT * FROM non_existing_table
+2025-01-29 19:37:21 ERROR migrations.MigrationValidator - SQL syntax is invalid: Syntax error
+2025-01-29 19:37:21 INFO  migrations.MigrationValidator - SQL is safe for execution.
+2025-01-29 19:37:21 INFO  migrations.MigrationValidator - Validating SQL syntax: SELECT * FROM test_table
+2025-01-29 19:37:21 INFO  migrations.MigrationValidator - SQL syntax is valid.
+2025-01-29 19:37:21 WARN  migrations.MigrationValidator - Destructive operation detected in SQL: DROP TABLE test_table
+2025-01-29 19:37:21 INFO  migrations.MigrationValidator - Validating SQL syntax: SELECT * FROM non_existing_table
+2025-01-29 19:37:21 ERROR migrations.MigrationValidator - SQL syntax is invalid: Syntax error
+2025-01-29 19:37:21 INFO  migrations.MigrationValidator - SQL is safe for execution.
+2025-01-30 13:44:33 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-30 13:44:33 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-30 13:44:33 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-30 13:44:33 WARN  org.example.migration.MigrationMain - Некорректный выбор. Завершение работы.
+2025-01-30 13:44:33 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-30 13:44:33 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-30 13:44:33 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-30 13:44:33 WARN  org.example.migration.MigrationMain - Некорректный выбор. Завершение работы.
+2025-01-30 13:46:06 INFO  org.example.migration.MigrationMain - Запуск программы управления миграциями...
+2025-01-30 13:46:08 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-30 13:46:08 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-30 13:46:08 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-30 13:46:08 ERROR org.example.migration.MigrationMain - Произошла ошибка: null
+java.util.NoSuchElementException: null
+	at java.base/java.util.Scanner.throwFor(Scanner.java:945)
+	at java.base/java.util.Scanner.next(Scanner.java:1602)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2267)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2221)
+	at org.example.migration.MigrationMain.run(MigrationMain.java:31)
+	at org.example.migration.MigrationMain.main(MigrationMain.java:20)
+	at migration_main.MigrationMainTest.testMain_rollbackToDate(MigrationMainTest.java:104)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:727)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:124)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:99)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:94)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:63)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92)
+	at jdk.proxy2/jdk.proxy2.$Proxy6.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:200)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:121)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+2025-01-30 13:46:08 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-30 13:46:08 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-30 13:46:08 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-30 13:46:08 INFO  org.example.migration.MigrationMain - Запуск миграций...
+2025-01-30 13:46:08 INFO  org.example.migration.MigrationMain - Миграции успешно завершены.
+2025-01-30 13:46:08 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-30 13:46:08 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-30 13:46:08 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-30 13:46:08 INFO  org.example.migration.MigrationMain - Введите дату отката в формате 'YYYY-MM-DD HH:MM:SS':
+2025-01-30 13:46:08 INFO  org.example.migration.MigrationMain - Попытка откатить миграции до 2025-01-01T12:00
+2025-01-30 13:46:08 INFO  org.example.migration.MigrationMain - Откат миграций выполнен до 2025-01-01T12:00
+2025-01-30 13:46:08 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-30 13:46:08 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-30 13:46:08 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-30 13:46:08 INFO  org.example.migration.MigrationMain - Введите дату отката в формате 'YYYY-MM-DD HH:MM:SS':
+2025-01-30 13:46:08 ERROR org.example.migration.MigrationMain - Неверный формат даты: invalid-date
+2025-01-30 13:46:08 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-30 13:46:08 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-30 13:46:08 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-30 13:46:08 WARN  org.example.migration.MigrationMain - Некорректный выбор. Завершение работы.
+2025-01-30 13:50:55 INFO  org.testcontainers.images.PullPolicy - Image pull policy will be performed by: DefaultPullPolicy()
+2025-01-30 13:50:55 INFO  o.t.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+2025-01-30 13:50:55 INFO  o.testcontainers.DockerClientFactory - Testcontainers version: 1.20.4
+2025-01-30 13:50:57 INFO  o.t.d.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.NpipeSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+2025-01-30 13:50:58 INFO  o.t.d.DockerClientProviderStrategy - Found Docker environment with local Npipe socket (npipe:////./pipe/docker_engine)
+2025-01-30 13:50:58 INFO  o.testcontainers.DockerClientFactory - Docker host IP address is localhost
+2025-01-30 13:50:58 INFO  o.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 27.3.1
+  API Version: 1.47
+  Operating System: Docker Desktop
+  Total Memory: 7784 MB
+  Labels: 
+    com.docker.desktop.address=npipe://\\.\pipe\docker_cli
+2025-01-30 13:50:58 INFO  tc.testcontainers/ryuk:0.11.0 - Creating container for image: testcontainers/ryuk:0.11.0
+2025-01-30 13:50:59 INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 is starting: c74a6772efa2930762a1e4451486828c8c6da3c1565c11f33f11112018cedd7d
+2025-01-30 13:50:59 INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 started in PT1.2902076S
+2025-01-30 13:50:59 INFO  o.t.utility.RyukResourceReaper - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+2025-01-30 13:50:59 INFO  o.testcontainers.DockerClientFactory - Checking the system...
+2025-01-30 13:50:59 INFO  o.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
+2025-01-30 13:50:59 INFO  tc.postgres:13 - Creating container for image: postgres:13
+2025-01-30 13:51:00 INFO  tc.postgres:13 - Container postgres:13 is starting: 1fb0c190ef03bd059cf71bc7b5cd051483b8781892aaf25ce37348dadd0e567d
+2025-01-30 13:51:02 INFO  tc.postgres:13 - Container postgres:13 started in PT2.831339S
+2025-01-30 13:51:02 INFO  tc.postgres:13 - Container is started (JDBC URL: jdbc:postgresql://localhost:57087/test_db?loggerLevel=OFF)
+2025-01-30 13:51:03 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-30 13:51:03 INFO  o.example.migration.MigrationManager - Found 4 migration files.
+2025-01-30 13:51:03 INFO  o.example.migration.MigrationManager - Migration already applied: version 1, file V1__initial_schema.sql
+2025-01-30 13:51:03 INFO  o.example.migration.MigrationManager - Migration already applied: version 2, file V2__add_constraints.sql
+2025-01-30 13:51:03 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-30 13:51:03 INFO  o.example.migration.MigrationManager - No migrations to rollback after 2025-01-30T13:51:03.920979400
+2025-01-30 13:51:04 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-30 13:51:04 INFO  o.example.migration.MigrationManager - Found 4 migration files.
+2025-01-30 13:51:04 INFO  o.example.migration.MigrationManager - Migration already applied: version 1, file V1__initial_schema.sql
+2025-01-30 13:51:04 INFO  o.example.migration.MigrationManager - Migration already applied: version 2, file V2__add_constraints.sql
+2025-01-30 13:51:18 INFO  o.e.migration.MigrationExecutor - Starting migration execution with script: CREATE TABLE IF NOT EXISTS another_table (id INT, description VARCHAR(255)); INSERT INTO another_table (id, description) VALUES (1, 'Description');
+2025-01-30 13:51:20 INFO  o.e.migration.MigrationExecutor - Migration executed successfully.
+2025-01-30 13:51:20 INFO  o.e.migration.MigrationExecutor - Starting migration execution with script: CREATE TABLE IF NOT EXISTS test_table (id INT, name VARCHAR(255)); INSERT INTO test_table (id, name) VALUES (1, 'Test');
+2025-01-30 13:51:20 INFO  o.e.migration.MigrationExecutor - Migration executed successfully.
+2025-01-30 13:51:24 INFO  o.e.migration.MigrationExecutor - Starting migration execution with script: SELECT * FROM test_table
+2025-01-30 13:51:24 INFO  o.e.migration.MigrationExecutor - Migration executed successfully.
+2025-01-30 13:51:25 INFO  org.example.migration.MigrationMain - Запуск программы управления миграциями...
+2025-01-30 13:51:25 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-30 13:51:25 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-30 13:51:25 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-30 13:51:25 ERROR org.example.migration.MigrationMain - Произошла ошибка: null
+java.util.NoSuchElementException: null
+	at java.base/java.util.Scanner.throwFor(Scanner.java:945)
+	at java.base/java.util.Scanner.next(Scanner.java:1602)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2267)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2221)
+	at org.example.migration.MigrationMain.run(MigrationMain.java:31)
+	at org.example.migration.MigrationMain.main(MigrationMain.java:20)
+	at migration_main.MigrationMainTest.testMain_rollbackToDate(MigrationMainTest.java:104)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:727)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:124)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:99)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:94)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:63)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92)
+	at jdk.proxy2/jdk.proxy2.$Proxy6.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:200)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:121)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+2025-01-30 13:51:25 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-30 13:51:25 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-30 13:51:25 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-30 13:51:25 INFO  org.example.migration.MigrationMain - Запуск миграций...
+2025-01-30 13:51:25 INFO  org.example.migration.MigrationMain - Миграции успешно завершены.
+2025-01-30 13:51:25 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-30 13:51:25 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-30 13:51:25 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-30 13:51:25 INFO  org.example.migration.MigrationMain - Введите дату отката в формате 'YYYY-MM-DD HH:MM:SS':
+2025-01-30 13:51:25 INFO  org.example.migration.MigrationMain - Попытка откатить миграции до 2025-01-01T12:00
+2025-01-30 13:51:25 INFO  org.example.migration.MigrationMain - Откат миграций выполнен до 2025-01-01T12:00
+2025-01-30 13:51:25 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-30 13:51:25 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-30 13:51:25 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-30 13:51:25 INFO  org.example.migration.MigrationMain - Введите дату отката в формате 'YYYY-MM-DD HH:MM:SS':
+2025-01-30 13:51:25 ERROR org.example.migration.MigrationMain - Неверный формат даты: invalid-date
+2025-01-30 13:51:25 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-30 13:51:25 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-30 13:51:25 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-30 13:51:25 WARN  org.example.migration.MigrationMain - Некорректный выбор. Завершение работы.
+2025-01-30 13:51:26 INFO  org.testcontainers.images.PullPolicy - Image pull policy will be performed by: DefaultPullPolicy()
+2025-01-30 13:51:26 INFO  o.t.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+2025-01-30 13:51:26 INFO  o.testcontainers.DockerClientFactory - Testcontainers version: 1.20.4
+2025-01-30 13:51:27 INFO  o.t.d.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.NpipeSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+2025-01-30 13:51:28 INFO  o.t.d.DockerClientProviderStrategy - Found Docker environment with local Npipe socket (npipe:////./pipe/docker_engine)
+2025-01-30 13:51:28 INFO  o.testcontainers.DockerClientFactory - Docker host IP address is localhost
+2025-01-30 13:51:28 INFO  o.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 27.3.1
+  API Version: 1.47
+  Operating System: Docker Desktop
+  Total Memory: 7784 MB
+  Labels: 
+    com.docker.desktop.address=npipe://\\.\pipe\docker_cli
+2025-01-30 13:51:28 INFO  tc.testcontainers/ryuk:0.11.0 - Creating container for image: testcontainers/ryuk:0.11.0
+2025-01-30 13:51:29 INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 is starting: fbfd96e0ba4e5cf1b893b28a860760bcb2bba6daedd8608a686a883222cae337
+2025-01-30 13:51:30 INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 started in PT1.4542379S
+2025-01-30 13:51:30 INFO  o.t.utility.RyukResourceReaper - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+2025-01-30 13:51:30 INFO  o.testcontainers.DockerClientFactory - Checking the system...
+2025-01-30 13:51:30 INFO  o.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
+2025-01-30 13:51:30 INFO  tc.postgres:13 - Creating container for image: postgres:13
+2025-01-30 13:51:30 INFO  tc.postgres:13 - Container postgres:13 is starting: a1824ec982410f09533ae5df1df92e0b47c932d54a878e7a37be3fc00d3f15e6
+2025-01-30 13:51:33 INFO  tc.postgres:13 - Container postgres:13 started in PT2.9178148S
+2025-01-30 13:51:33 INFO  tc.postgres:13 - Container is started (JDBC URL: jdbc:postgresql://localhost:57133/test_db?loggerLevel=OFF)
+2025-01-30 13:51:33 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-30 13:51:33 INFO  o.example.migration.MigrationManager - Found 4 migration files.
+2025-01-30 13:51:33 INFO  o.example.migration.MigrationManager - Migration already applied: version 1, file V1__initial_schema.sql
+2025-01-30 13:51:33 INFO  o.example.migration.MigrationManager - Migration already applied: version 2, file V2__add_constraints.sql
+2025-01-30 13:51:33 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-30 13:51:33 INFO  o.example.migration.MigrationManager - No migrations to rollback after 2025-01-30T13:51:33.128939600
+2025-01-30 13:51:33 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-30 13:51:33 INFO  o.example.migration.MigrationManager - Found 4 migration files.
+2025-01-30 13:51:33 INFO  o.example.migration.MigrationManager - Migration already applied: version 1, file V1__initial_schema.sql
+2025-01-30 13:51:33 INFO  o.example.migration.MigrationManager - Migration already applied: version 2, file V2__add_constraints.sql
+2025-01-30 13:51:35 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: INSERT INTO test_table (id, name) VALUES (1, 'Test Name')
+2025-01-30 13:51:35 INFO  migrations.MigrationScriptExecutor - Migration executed successfully.
+2025-01-30 13:51:35 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-30 13:51:35 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: INSERT INTO test_table (id, name) VALUES (2, 'New Test Name')
+2025-01-30 13:51:35 INFO  migrations.MigrationScriptExecutor - Migration executed successfully.
+2025-01-30 13:51:35 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-30 13:51:35 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: INSERT INTO test_table (id, name) VALUES (1, 'Test Name')
+2025-01-30 13:51:35 INFO  migrations.MigrationScriptExecutor - Migration executed successfully.
+2025-01-30 13:51:35 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-30 13:51:35 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: INSERT INTO test_table (id, name) VALUES (1, 'Another Test Name')
+2025-01-30 13:51:35 ERROR migrations.MigrationScriptExecutor - Error executing migration: Нарушение уникального индекса или первичного ключа: "PRIMARY KEY ON PUBLIC.TEST_TABLE(ID) ( /* key:1 */ 1, 'Test Name')"
+Unique index or primary key violation: "PRIMARY KEY ON PUBLIC.TEST_TABLE(ID) ( /* key:1 */ 1, 'Test Name')"; SQL statement:
+INSERT INTO test_table (id, name) VALUES (1, 'Another Test Name') [23505-214]
+2025-01-30 13:51:35 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-30 13:51:36 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: CREATE TABLE test(id INT)
+2025-01-30 13:51:36 INFO  migrations.MigrationScriptExecutor - Migration executed successfully.
+2025-01-30 13:51:36 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-30 13:51:36 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: CREATE TABLE test(id INT)
+2025-01-30 13:51:36 INFO  migrations.MigrationScriptExecutor - Migration executed successfully.
+2025-01-30 13:51:36 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-30 13:51:36 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: CREATE TABLE test(id INT)
+2025-01-30 13:51:36 ERROR migrations.MigrationScriptExecutor - Error executing migration: null
+2025-01-30 13:51:36 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-30 13:51:36 INFO  migrations.MigrationValidator - Validating SQL syntax: SELECT * FROM test_table
+2025-01-30 13:51:36 INFO  migrations.MigrationValidator - SQL syntax is valid.
+2025-01-30 13:51:36 WARN  migrations.MigrationValidator - Destructive operation detected in SQL: DROP TABLE test_table
+2025-01-30 13:51:36 INFO  migrations.MigrationValidator - Validating SQL syntax: SELECT * FROM non_existing_table
+2025-01-30 13:51:36 ERROR migrations.MigrationValidator - SQL syntax is invalid: Syntax error
+2025-01-30 13:51:36 INFO  migrations.MigrationValidator - SQL is safe for execution.
+2025-01-30 13:51:36 INFO  migrations.MigrationValidator - Validating SQL syntax: SELECT * FROM test_table
+2025-01-30 13:51:36 INFO  migrations.MigrationValidator - SQL syntax is valid.
+2025-01-30 13:51:36 WARN  migrations.MigrationValidator - Destructive operation detected in SQL: DROP TABLE test_table
+2025-01-30 13:51:36 INFO  migrations.MigrationValidator - Validating SQL syntax: SELECT * FROM non_existing_table
+2025-01-30 13:51:36 ERROR migrations.MigrationValidator - SQL syntax is invalid: Syntax error
+2025-01-30 13:51:36 INFO  migrations.MigrationValidator - SQL is safe for execution.
+2025-01-30 13:52:14 INFO  o.e.migration.MigrationExecutor - Starting migration execution with script: CREATE TABLE IF NOT EXISTS another_table (id INT, description VARCHAR(255)); INSERT INTO another_table (id, description) VALUES (1, 'Description');
+2025-01-30 13:52:15 INFO  o.e.migration.MigrationExecutor - Migration executed successfully.
+2025-01-30 13:52:15 INFO  o.e.migration.MigrationExecutor - Starting migration execution with script: CREATE TABLE IF NOT EXISTS test_table (id INT, name VARCHAR(255)); INSERT INTO test_table (id, name) VALUES (1, 'Test');
+2025-01-30 13:52:15 INFO  o.e.migration.MigrationExecutor - Migration executed successfully.
+2025-01-30 13:52:19 INFO  o.e.migration.MigrationExecutor - Starting migration execution with script: SELECT * FROM test_table
+2025-01-30 13:52:19 INFO  o.e.migration.MigrationExecutor - Migration executed successfully.
+2025-01-30 13:52:20 INFO  org.example.migration.MigrationMain - Запуск программы управления миграциями...
+2025-01-30 13:52:20 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-30 13:52:20 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-30 13:52:20 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-30 13:52:20 ERROR org.example.migration.MigrationMain - Произошла ошибка: null
+java.util.NoSuchElementException: null
+	at java.base/java.util.Scanner.throwFor(Scanner.java:945)
+	at java.base/java.util.Scanner.next(Scanner.java:1602)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2267)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2221)
+	at org.example.migration.MigrationMain.run(MigrationMain.java:31)
+	at org.example.migration.MigrationMain.main(MigrationMain.java:20)
+	at migration_main.MigrationMainTest.testMain_rollbackToDate(MigrationMainTest.java:104)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:727)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:124)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:99)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:94)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:63)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92)
+	at jdk.proxy2/jdk.proxy2.$Proxy6.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:200)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:121)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+2025-01-30 13:52:20 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-30 13:52:20 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-30 13:52:20 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-30 13:52:20 INFO  org.example.migration.MigrationMain - Запуск миграций...
+2025-01-30 13:52:20 INFO  org.example.migration.MigrationMain - Миграции успешно завершены.
+2025-01-30 13:52:20 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-30 13:52:20 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-30 13:52:20 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-30 13:52:20 INFO  org.example.migration.MigrationMain - Введите дату отката в формате 'YYYY-MM-DD HH:MM:SS':
+2025-01-30 13:52:20 INFO  org.example.migration.MigrationMain - Попытка откатить миграции до 2025-01-01T12:00
+2025-01-30 13:52:20 INFO  org.example.migration.MigrationMain - Откат миграций выполнен до 2025-01-01T12:00
+2025-01-30 13:52:20 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-30 13:52:20 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-30 13:52:20 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-30 13:52:20 INFO  org.example.migration.MigrationMain - Введите дату отката в формате 'YYYY-MM-DD HH:MM:SS':
+2025-01-30 13:52:20 ERROR org.example.migration.MigrationMain - Неверный формат даты: invalid-date
+2025-01-30 13:52:20 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-30 13:52:20 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-30 13:52:20 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-30 13:52:20 WARN  org.example.migration.MigrationMain - Некорректный выбор. Завершение работы.
+2025-01-30 13:52:20 INFO  org.testcontainers.images.PullPolicy - Image pull policy will be performed by: DefaultPullPolicy()
+2025-01-30 13:52:20 INFO  o.t.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+2025-01-30 13:52:20 INFO  o.testcontainers.DockerClientFactory - Testcontainers version: 1.20.4
+2025-01-30 13:52:21 INFO  o.t.d.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.NpipeSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+2025-01-30 13:52:23 INFO  o.t.d.DockerClientProviderStrategy - Found Docker environment with local Npipe socket (npipe:////./pipe/docker_engine)
+2025-01-30 13:52:23 INFO  o.testcontainers.DockerClientFactory - Docker host IP address is localhost
+2025-01-30 13:52:23 INFO  o.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 27.3.1
+  API Version: 1.47
+  Operating System: Docker Desktop
+  Total Memory: 7784 MB
+  Labels: 
+    com.docker.desktop.address=npipe://\\.\pipe\docker_cli
+2025-01-30 13:52:23 INFO  tc.testcontainers/ryuk:0.11.0 - Creating container for image: testcontainers/ryuk:0.11.0
+2025-01-30 13:52:24 INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 is starting: cbfef802261bb7319118ae31dcca23bf7aab29ac6afad837668c789f8df4537b
+2025-01-30 13:52:24 INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 started in PT1.5014187S
+2025-01-30 13:52:24 INFO  o.t.utility.RyukResourceReaper - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+2025-01-30 13:52:24 INFO  o.testcontainers.DockerClientFactory - Checking the system...
+2025-01-30 13:52:24 INFO  o.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
+2025-01-30 13:52:24 INFO  tc.postgres:13 - Creating container for image: postgres:13
+2025-01-30 13:52:25 INFO  tc.postgres:13 - Container postgres:13 is starting: e257bf3a4f40f17c8ed1be879c4b9a539bd12ee29e9c9d712cd6ed0b5f3d85cd
+2025-01-30 13:52:26 INFO  tc.postgres:13 - Container postgres:13 started in PT2.0754853S
+2025-01-30 13:52:26 INFO  tc.postgres:13 - Container is started (JDBC URL: jdbc:postgresql://localhost:57172/test_db?loggerLevel=OFF)
+2025-01-30 13:52:26 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-30 13:52:26 INFO  o.example.migration.MigrationManager - Found 4 migration files.
+2025-01-30 13:52:26 INFO  o.example.migration.MigrationManager - Migration already applied: version 1, file V1__initial_schema.sql
+2025-01-30 13:52:26 INFO  o.example.migration.MigrationManager - Migration already applied: version 2, file V2__add_constraints.sql
+2025-01-30 13:52:26 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-30 13:52:26 INFO  o.example.migration.MigrationManager - No migrations to rollback after 2025-01-30T13:52:26.966617500
+2025-01-30 13:52:27 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-30 13:52:27 INFO  o.example.migration.MigrationManager - Found 4 migration files.
+2025-01-30 13:52:27 INFO  o.example.migration.MigrationManager - Migration already applied: version 1, file V1__initial_schema.sql
+2025-01-30 13:52:27 INFO  o.example.migration.MigrationManager - Migration already applied: version 2, file V2__add_constraints.sql
+2025-01-30 13:52:29 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: INSERT INTO test_table (id, name) VALUES (1, 'Test Name')
+2025-01-30 13:52:29 INFO  migrations.MigrationScriptExecutor - Migration executed successfully.
+2025-01-30 13:52:29 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-30 13:52:29 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: INSERT INTO test_table (id, name) VALUES (2, 'New Test Name')
+2025-01-30 13:52:29 INFO  migrations.MigrationScriptExecutor - Migration executed successfully.
+2025-01-30 13:52:29 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-30 13:52:29 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: INSERT INTO test_table (id, name) VALUES (1, 'Test Name')
+2025-01-30 13:52:29 INFO  migrations.MigrationScriptExecutor - Migration executed successfully.
+2025-01-30 13:52:29 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-30 13:52:29 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: INSERT INTO test_table (id, name) VALUES (1, 'Another Test Name')
+2025-01-30 13:52:29 ERROR migrations.MigrationScriptExecutor - Error executing migration: Нарушение уникального индекса или первичного ключа: "PRIMARY KEY ON PUBLIC.TEST_TABLE(ID) ( /* key:1 */ 1, 'Test Name')"
+Unique index or primary key violation: "PRIMARY KEY ON PUBLIC.TEST_TABLE(ID) ( /* key:1 */ 1, 'Test Name')"; SQL statement:
+INSERT INTO test_table (id, name) VALUES (1, 'Another Test Name') [23505-214]
+2025-01-30 13:52:29 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-30 13:52:29 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: CREATE TABLE test(id INT)
+2025-01-30 13:52:29 INFO  migrations.MigrationScriptExecutor - Migration executed successfully.
+2025-01-30 13:52:29 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-30 13:52:29 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: CREATE TABLE test(id INT)
+2025-01-30 13:52:29 INFO  migrations.MigrationScriptExecutor - Migration executed successfully.
+2025-01-30 13:52:29 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-30 13:52:29 INFO  migrations.MigrationScriptExecutor - Starting migration with SQL: CREATE TABLE test(id INT)
+2025-01-30 13:52:29 ERROR migrations.MigrationScriptExecutor - Error executing migration: null
+2025-01-30 13:52:29 INFO  migrations.MigrationScriptExecutor - Autocommit restored to its original state.
+2025-01-30 13:52:29 INFO  migrations.MigrationValidator - Validating SQL syntax: SELECT * FROM test_table
+2025-01-30 13:52:29 INFO  migrations.MigrationValidator - SQL syntax is valid.
+2025-01-30 13:52:29 WARN  migrations.MigrationValidator - Destructive operation detected in SQL: DROP TABLE test_table
+2025-01-30 13:52:29 INFO  migrations.MigrationValidator - Validating SQL syntax: SELECT * FROM non_existing_table
+2025-01-30 13:52:29 ERROR migrations.MigrationValidator - SQL syntax is invalid: Syntax error
+2025-01-30 13:52:29 INFO  migrations.MigrationValidator - SQL is safe for execution.
+2025-01-30 13:52:29 INFO  migrations.MigrationValidator - Validating SQL syntax: SELECT * FROM test_table
+2025-01-30 13:52:29 INFO  migrations.MigrationValidator - SQL syntax is valid.
+2025-01-30 13:52:29 WARN  migrations.MigrationValidator - Destructive operation detected in SQL: DROP TABLE test_table
+2025-01-30 13:52:29 INFO  migrations.MigrationValidator - Validating SQL syntax: SELECT * FROM non_existing_table
+2025-01-30 13:52:29 ERROR migrations.MigrationValidator - SQL syntax is invalid: Syntax error
+2025-01-30 13:52:29 INFO  migrations.MigrationValidator - SQL is safe for execution.
+2025-01-30 14:24:33 INFO  o.e.migration.MigrationExecutor - Starting migration execution with script: CREATE TABLE IF NOT EXISTS another_table (id INT, description VARCHAR(255)); INSERT INTO another_table (id, description) VALUES (1, 'Description');
+2025-01-30 14:24:34 INFO  o.e.migration.MigrationExecutor - Migration executed successfully.
+2025-01-30 14:24:34 INFO  o.e.migration.MigrationExecutor - Starting migration execution with script: CREATE TABLE IF NOT EXISTS test_table (id INT, name VARCHAR(255)); INSERT INTO test_table (id, name) VALUES (1, 'Test');
+2025-01-30 14:24:34 INFO  o.e.migration.MigrationExecutor - Migration executed successfully.
+2025-01-30 14:24:38 INFO  o.e.migration.MigrationExecutor - Starting migration execution with script: SELECT * FROM test_table
+2025-01-30 14:24:39 INFO  o.e.migration.MigrationExecutor - Migration executed successfully.
+2025-01-30 14:24:46 INFO  org.example.migration.MigrationMain - Запуск программы управления миграциями...
+2025-01-30 14:24:47 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-30 14:24:47 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-30 14:24:47 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-30 14:24:54 INFO  org.example.migration.MigrationMain - Запуск миграций...
+2025-01-30 14:24:54 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-30 14:24:54 INFO  o.example.migration.MigrationManager - Found 4 migration files.
+2025-01-30 14:24:54 INFO  o.example.migration.MigrationManager - Migration already applied: version 1, file V1__initial_schema.sql
+2025-01-30 14:24:54 INFO  o.example.migration.MigrationManager - Migration already applied: version 2, file V2__add_constraints.sql
+2025-01-30 14:24:54 INFO  org.example.migration.MigrationMain - Миграции успешно завершены.
+2025-01-30 14:25:31 INFO  org.example.migration.MigrationMain - Запуск программы управления миграциями...
+2025-01-30 14:25:32 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-30 14:25:32 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-30 14:25:32 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-30 14:25:32 INFO  org.example.migration.MigrationMain - 
+
+2025-01-30 14:25:47 ERROR org.example.migration.MigrationMain - Произошла ошибка: null
+java.util.NoSuchElementException: null
+	at java.base/java.util.Scanner.throwFor(Scanner.java:945)
+	at java.base/java.util.Scanner.next(Scanner.java:1602)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2267)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2221)
+	at org.example.migration.MigrationMain.run(MigrationMain.java:32)
+	at org.example.migration.MigrationMain.main(MigrationMain.java:20)
+2025-01-30 14:25:50 INFO  org.example.migration.MigrationMain - Запуск программы управления миграциями...
+2025-01-30 14:25:52 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-30 14:25:52 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-30 14:25:52 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+
+2025-01-30 14:25:58 ERROR org.example.migration.MigrationMain - Произошла ошибка: null
+java.util.NoSuchElementException: null
+	at java.base/java.util.Scanner.throwFor(Scanner.java:945)
+	at java.base/java.util.Scanner.next(Scanner.java:1602)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2267)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2221)
+	at org.example.migration.MigrationMain.run(MigrationMain.java:31)
+	at org.example.migration.MigrationMain.main(MigrationMain.java:20)
+2025-01-30 14:26:01 INFO  org.example.migration.MigrationMain - Запуск программы управления миграциями...
+2025-01-30 14:26:02 INFO  org.example.migration.MigrationMain - Выберите действие:
+2025-01-30 14:26:02 INFO  org.example.migration.MigrationMain - 1: Выполнить миграции
+2025-01-30 14:26:02 INFO  org.example.migration.MigrationMain - 2: Откатить до определённой даты
+2025-01-30 14:26:05 INFO  org.example.migration.MigrationMain - Введите дату отката в формате 'YYYY-MM-DD HH:MM:SS':
+2025-01-30 14:26:31 INFO  org.example.migration.MigrationMain - Попытка откатить миграции до 2025-01-30T14:26
+2025-01-30 14:26:31 INFO  o.example.migration.MigrationManager - Migration table created or already exists.
+2025-01-30 14:26:31 INFO  o.example.migration.MigrationManager - No migrations to rollback after 2025-01-30T14:26
+2025-01-30 14:26:31 INFO  org.example.migration.MigrationMain - Откат миграций выполнен до 2025-01-30T14:26
