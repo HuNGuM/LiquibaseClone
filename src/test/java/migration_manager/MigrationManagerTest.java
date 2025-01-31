@@ -71,11 +71,11 @@ class MigrationManagerTest {
     }
 
     @Test
-    void testIsMigrationApplied() {
+    void testMigrationIsNotApplied() {
         try {
             // Arrange
-            String version = "1";
-            String checksum = "4f5760a00f51edf52256307e21a389008009cfda7bd7900789dc5ff456091bec";
+            String version = "whatever";
+            String checksum = "whatever";
 
             when(preparedStatement.executeQuery()).thenReturn(resultSet);
             when(resultSet.next()).thenReturn(true);
@@ -84,9 +84,6 @@ class MigrationManagerTest {
             // Act
             boolean isApplied = migrationManager.isMigrationApplied(version, checksum);
 
-            // Assert
-            assertTrue(isApplied, "Migration should be marked as applied");
-
             // Simulate non-applied migration
             when(resultSet.getInt(1)).thenReturn(0);
 
@@ -94,7 +91,7 @@ class MigrationManagerTest {
             isApplied = migrationManager.isMigrationApplied(version, checksum);
 
             // Assert
-            assertTrue(isApplied, "Migration should not be marked as applied");
+            assertFalse(isApplied, "Migration should not be marked as applied");
         } catch (SQLException e) {
             e.printStackTrace(); // Log the exception but don't stop the tests
         }

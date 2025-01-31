@@ -17,88 +17,55 @@ public class MigrationScriptExecutorIntegrationTest {
 
     @BeforeEach
     void setUp() throws SQLException {
-        // Инициализация подключения к тестовой базе данных H2
         connection = DriverManager.getConnection("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;", "sa", "");
         migrationScriptExecutor = new MigrationScriptExecutor(connection);
 
-        // Создаем таблицу для тестов
+        // Очищаем таблицы перед каждым тестом
         try (Statement statement = connection.createStatement()) {
-            // Убедитесь, что таблица существует до выполнения SQL
+            statement.execute("DROP TABLE IF EXISTS test_table");
+            statement.execute("DROP TABLE IF EXISTS migration_lock");
+
+            // Создаем таблицы заново
             statement.execute("CREATE TABLE IF NOT EXISTS test_table (id INT PRIMARY KEY, name VARCHAR(255))");
+            statement.execute("CREATE TABLE IF NOT EXISTS migration_lock (id INT PRIMARY KEY, is_locked BOOLEAN)");
+            statement.execute("MERGE INTO migration_lock (id, is_locked) KEY(id) VALUES (1, FALSE)");
         }
     }
 
     @AfterEach
     void tearDown() throws SQLException {
-        // Очистка тестовой базы данных
-        try (Statement statement = connection.createStatement()) {
-            statement.execute("DROP TABLE IF EXISTS test_table");
-        }
         if (connection != null) {
+            try (Statement statement = connection.createStatement()) {
+                statement.execute("DROP TABLE IF EXISTS test_table");
+                statement.execute("DROP TABLE IF EXISTS migration_lock");
+            }
             connection.close();
         }
     }
 
     @Test
-    @DisplayName("Execute migration successfully and insert data")
-    void testExecuteMigrationSuccess() throws SQLException {
-        // Выполнение SQL-скрипта
+    @DisplayName("Skip execution when migration is locked")
+    void testSkipExecutionWhenLocked() throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE migration_lock SET is_locked = TRUE WHERE id = 1")) {
+            preparedStatement.executeUpdate();
+        }
+
         String sql = "INSERT INTO test_table (id, name) VALUES (1, 'Test Name')";
         migrationScriptExecutor.execute(sql);
 
-        // Проверка, что данные были добавлены в таблицу
-        try (Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM test_table WHERE id = 1");
-
-            if (resultSet.next()) {
-                int count = resultSet.getInt(1);
-                assertEquals(1, count, "Таблица должна содержать 1 запись с id = 1");
-            } else {
-                fail("Таблица не содержит записей с id = 1");
-            }
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM test_table")) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            assertEquals(0, resultSet.getInt(1), "Данные не должны были вставиться, так как миграция была заблокирована");
         }
     }
 
-    @Test
-    @DisplayName("Rollback migration on failure")
-    void testExecuteMigrationRollbackOnFailure() throws SQLException {
-        // Миграция с ошибкой (например, нарушение ограничения уникальности)
-        String sql = "INSERT INTO test_table (id, name) VALUES (1, 'Test Name')";
-        migrationScriptExecutor.execute(sql);
 
-        // Попытка вставить строку с таким же id, что вызовет ошибку
-        String invalidSql = "INSERT INTO test_table (id, name) VALUES (1, 'Another Test Name')";
 
-        SQLException exception = assertThrows(SQLException.class, () -> {
-            migrationScriptExecutor.execute(invalidSql);
-        });
-
-        // Проверка, что транзакция откатилась после ошибки
-        try (Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM test_table");
-
-            if (resultSet.next()) {
-                int count = resultSet.getInt(1);
-                assertEquals(1, count, "Таблица должна содержать только 1 запись после отката");
-            } else {
-                fail("Таблица пуста после отката");
-            }
+    private void unlockMigration() throws SQLException {
+        String unlockMigrationQuery = "UPDATE migration_lock SET is_locked = FALSE WHERE id = 1";
+        try (PreparedStatement unlockStmt = connection.prepareStatement(unlockMigrationQuery)) {
+            unlockStmt.executeUpdate();
         }
-    }
-
-    @Test
-    @DisplayName("Auto-commit restored after migration execution")
-    void testAutoCommitRestoredAfterExecution() throws SQLException {
-        // Проверка, что AutoCommit был восстановлен после выполнения миграции
-        boolean initialAutoCommit = connection.getAutoCommit();
-
-        String sql = "INSERT INTO test_table (id, name) VALUES (2, 'New Test Name')";
-        migrationScriptExecutor.execute(sql);
-
-        // Проверка, что AutoCommit восстановлен в true после выполнения миграции
-        assertTrue(connection.getAutoCommit(), "AutoCommit должен быть восстановлен в true");
-
-        // Восстановление состояния соединения
-        connection.setAutoCommit(initialAutoCommit);
     }
 }

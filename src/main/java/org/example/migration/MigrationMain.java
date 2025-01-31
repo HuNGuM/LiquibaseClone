@@ -14,34 +14,34 @@ public class MigrationMain {
     private static final Logger logger = LoggerFactory.getLogger(MigrationMain.class);
 
     public static void main(String[] args) {
-        logger.info("Запуск программы управления миграциями...");
+        logger.info("Migration management program started...");
         try (Scanner scanner = new Scanner(System.in)) {
             MigrationManager manager = new MigrationManager();
-            new MigrationMain().run(scanner, manager); // Вызываем метод с параметрами
+            new MigrationMain().run(scanner, manager);
         } catch (Exception e) {
-            logger.error("Произошла ошибка: {}", e.getMessage(), e);
+            logger.error("An error occurred: {}", e.getMessage(), e);
         }
     }
 
     public void run(Scanner scanner, MigrationManager manager) throws SQLException {
-        logger.info("Выберите действие:");
-        logger.info("1: Выполнить миграции");
-        logger.info("2: Откатить до определённой даты");
+        logger.info("Select an action:");
+        logger.info("1: Run migrations");
+        logger.info("2: Rollback to a specific date");
 
         int choice = scanner.nextInt();
         switch (choice) {
             case 1 -> {
-                logger.info("Запуск миграций...");
+                logger.info("Running migrations...");
                 manager.runMigrations();
-                logger.info("Миграции успешно завершены.");
+                logger.info("Migrations completed successfully.");
             }
             case 2 -> {
-                logger.info("Введите дату отката в формате 'YYYY-MM-DD HH:MM:SS':");
-                scanner.nextLine(); // Пропуск символа новой строки
+                logger.info("Enter the rollback date in the format 'YYYY-MM-DD HH:MM:SS':");
+                scanner.nextLine();
                 String dateString = scanner.nextLine();
                 handleRollback(dateString, manager);
             }
-            default -> logger.warn("Некорректный выбор. Завершение работы.");
+            default -> logger.warn("Invalid choice. Program will exit.");
         }
     }
 
@@ -50,11 +50,11 @@ public class MigrationMain {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime rollbackDate = LocalDateTime.parse(dateString, formatter);
 
-            logger.info("Попытка откатить миграции до {}", rollbackDate);
+            logger.info("Attempting to rollback migrations to {}", rollbackDate);
             manager.rollbackToDate(rollbackDate);
-            logger.info("Откат миграций выполнен до {}", rollbackDate);
+            logger.info("Rollback completed to {}", rollbackDate);
         } catch (DateTimeParseException e) {
-            logger.error("Неверный формат даты: {}", dateString);
+            logger.error("Invalid date format: {}", dateString);
         }
     }
 }

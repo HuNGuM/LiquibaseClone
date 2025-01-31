@@ -32,7 +32,7 @@ class MigrationMainTest {
     @Test
     void testRunMigrationsSuccessfully() throws SQLException {
         // Arrange
-        when(scanner.nextInt()).thenReturn(1); // Выбор: "1" (запуск миграций)
+        when(scanner.nextInt()).thenReturn(1);
         doNothing().when(migrationManager).runMigrations();
         migrationMain.run(scanner, migrationManager);
         verify(migrationManager, times(1)).runMigrations();
@@ -40,71 +40,56 @@ class MigrationMainTest {
 
     @Test
     void testRollbackToValidDate() throws SQLException {
-        // Arrange
-        when(scanner.nextInt()).thenReturn(2); // Выбор: "2" (откат)
+        when(scanner.nextInt()).thenReturn(2);
         when(scanner.nextLine())
-                .thenReturn("") // Пропуск символа новой строки
-                .thenReturn("2025-01-01 12:00:00"); // Дата отката
+                .thenReturn("")
+                .thenReturn("2025-01-01 12:00:00");
 
         LocalDateTime rollbackDate = LocalDateTime.parse("2025-01-01T12:00:00");
         doNothing().when(migrationManager).rollbackToDate(rollbackDate);
 
-        // Act
         migrationMain.run(scanner, migrationManager);
 
-        // Assert
         verify(migrationManager, times(1)).rollbackToDate(rollbackDate);
     }
 
     @Test
     void testRollbackToInvalidDate() throws SQLException {
-        // Arrange
-        when(scanner.nextInt()).thenReturn(2); // Выбор: "2" (откат)
+        when(scanner.nextInt()).thenReturn(2);
         when(scanner.nextLine())
-                .thenReturn("") // Пропуск символа новой строки
-                .thenReturn("invalid-date"); // Некорректная дата
+                .thenReturn("")
+                .thenReturn("invalid-date");
 
-        // Act
         migrationMain.run(scanner, migrationManager);
 
-        // Assert
         verify(migrationManager, never()).rollbackToDate(any());
     }
 
     @Test
     void testInvalidChoice() throws SQLException {
-        // Arrange
-        when(scanner.nextInt()).thenReturn(99); // Некорректный выбор
+        when(scanner.nextInt()).thenReturn(99);
 
-        // Act
         migrationMain.run(scanner, migrationManager);
 
-        // Assert
         verifyNoInteractions(migrationManager);
     }
     @Test
     void testMain_runMigrations() {
-        // Arrange
         doNothing().when(migrationManager).runMigrations();
 
-        // Act
         migrationManager.runMigrations();
 
-        // Assert
         verify(migrationManager, times(1)).runMigrations();
     }
 
     @Test
     void testMain_rollbackToDate() {
-        // Arrange
         LocalDateTime rollbackDate = LocalDateTime.now();
         doNothing().when(migrationManager).rollbackToDate(rollbackDate);
 
-        // Act
-        MigrationMain.main(new String[]{"2"}); // Simulate user input choice 2
+        MigrationMain.main(new String[]{"2"});
         migrationManager.rollbackToDate(rollbackDate);
 
-        // Assert
         verify(migrationManager, times(1)).rollbackToDate(rollbackDate);
     }
 }

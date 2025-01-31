@@ -33,8 +33,6 @@ class MigrationExecutorTest {
         MockitoAnnotations.openMocks(this);
         migrationExecutor = new MigrationExecutor();
 
-        // Мокируем статический метод getConnection()
-        // Для использования статических методов с Mockito 5, можно использовать Mockito.mockStatic
         try (var mock = mockStatic(DatabaseConnection.class)) {
             mock.when(DatabaseConnection::getConnection).thenReturn(connection);
         }
@@ -44,12 +42,9 @@ class MigrationExecutorTest {
     void testExecuteMigration_CorrectErrorHandling() throws SQLException {
         String script = "SELECT * FROM test_table";
 
-        // Мокаем выброс исключения при выполнении скрипта
         when(connection.createStatement()).thenReturn(statement);
         doThrow(new SQLException("SQL error")).when(statement).execute(script);
 
         migrationExecutor.executeMigration(script);
-
-        // Можно добавить проверку логов или других действий, если необходимо
     }
 }

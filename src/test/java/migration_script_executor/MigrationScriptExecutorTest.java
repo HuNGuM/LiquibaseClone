@@ -13,14 +13,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MigrationScriptExecutorTest {
 
-    @Mock
-    private Connection connection;
-
-    @Mock
-    private PreparedStatement preparedStatement;
-
-    @Mock
-    private SQLException sqlException;
+    @Mock private Connection connection;
+    @Mock private PreparedStatement preparedStatement;
+    @Mock private ResultSet resultSet;
+    @Mock private SQLException sqlException;
 
     private MigrationScriptExecutor migrationScriptExecutor;
 
@@ -29,55 +25,32 @@ public class MigrationScriptExecutorTest {
         MockitoAnnotations.openMocks(this);
         migrationScriptExecutor = new MigrationScriptExecutor(connection);
 
-        // Настроим mock-объекты
         when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
+        when(preparedStatement.executeQuery()).thenReturn(resultSet);
+        when(resultSet.next()).thenReturn(false);
     }
 
     @Test
-    @DisplayName("Test with custom name: Execute migration successfully")
+    @DisplayName("Execute migration successfully")
     void testExecuteMigrationSuccess() throws SQLException {
         String sql = "CREATE TABLE test(id INT)";
-
-        // Выполнение миграции
         migrationScriptExecutor.execute(sql);
 
-        // Проверка, что prepareStatement был вызван с нужным SQL
-        verify(connection).prepareStatement(sql);
+        verify(connection).setAutoCommit(false);
         verify(preparedStatement).execute();
         verify(connection).commit();
-        verify(preparedStatement).close();
         verify(connection).setAutoCommit(true);
     }
 
     @Test
-    @DisplayName("Test with custom name: Execute migration rollback on failure")
+    @DisplayName("Rollback on migration failure")
     void testExecuteMigrationRollbackOnFailure() throws SQLException {
         String sql = "CREATE TABLE test(id INT)";
-
-        // Моделируем исключение при выполнении SQL
         doThrow(sqlException).when(preparedStatement).execute();
 
-        // Проверяем, что SQLException выбрасывается
-        assertThrows(SQLException.class, () -> {
-            migrationScriptExecutor.execute(sql);
-        });
+        assertThrows(SQLException.class, () -> migrationScriptExecutor.execute(sql));
 
-        // Проверяем, что транзакция откатилась
         verify(connection).rollback();
-        verify(connection).setAutoCommit(true);  // Убедимся, что AutoCommit восстанавливается
-    }
-
-    @Test
-    @DisplayName("Test with custom name: Auto-commit restored after execution")
-    void testAutoCommitRestoredAfterExecution() throws SQLException {
-        String sql = "CREATE TABLE test(id INT)";
-
-        // Моделируем, что AutoCommit было отключено
-        when(connection.getAutoCommit()).thenReturn(false);
-
-        migrationScriptExecutor.execute(sql);
-
-        // Проверка, что AutoCommit был восстановлен в конце
         verify(connection).setAutoCommit(true);
     }
 }

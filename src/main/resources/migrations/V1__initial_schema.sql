@@ -178,10 +178,17 @@ VALUES
     ('Project Poseidon');
 
 
--- Назначение каждому сотруднику уникального проекта
+-- Назначение каждому сотруднику проекта
 INSERT INTO employee_projects (employee_id, project_id)
 SELECT e.id AS employee_id, p.id AS project_id
 FROM employees e
          JOIN projects p
               ON e.id % 30 + 1 = p.id;
+
+INSERT INTO employee_projects (employee_id, project_id)
+VALUES
+    (1,7),
+    (10,8),
+    (20,9),
+    (30,10);
 

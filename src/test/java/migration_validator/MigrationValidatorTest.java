@@ -28,7 +28,6 @@ public class MigrationValidatorTest {
     void testValidateCorrectSyntax() throws SQLException {
         String sql = "SELECT * FROM test_table";
 
-        // Симуляция успешного выполнения запроса EXPLAIN
         when(connection.createStatement()).thenReturn(mock(java.sql.Statement.class));
 
         boolean result = migrationValidator.validate(sql);
@@ -41,7 +40,6 @@ public class MigrationValidatorTest {
     void testValidateIncorrectSyntax() throws SQLException {
         String sql = "SELECT * FROM non_existing_table";
 
-        // Симуляция ошибки при выполнении запроса EXPLAIN
         when(connection.createStatement()).thenThrow(new SQLException("Syntax error"));
 
         boolean result = migrationValidator.validate(sql);

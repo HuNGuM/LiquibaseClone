@@ -9,7 +9,6 @@ public class DatabaseConfig {
     public static Connection getConnection() throws SQLException, IOException {
         Properties properties = new Properties();
 
-        // Чтение настроек из testApplication.properties
         properties.load(DatabaseConfig.class.getClassLoader().getResourceAsStream("application.properties"));
 
         String url = properties.getProperty("db.url");
@@ -18,11 +17,11 @@ public class DatabaseConfig {
         String driverClass = properties.getProperty("db.driverClass");
 
         try {
-            Class.forName(driverClass); // Загружаем драйвер
+            Class.forName(driverClass);
         } catch (ClassNotFoundException e) {
             throw new SQLException("Driver not found", e);
         }
 
-        return DriverManager.getConnection(url, username, password); // Подключаемся к базе данных
+        return DriverManager.getConnection(url, username, password);
     }
 }

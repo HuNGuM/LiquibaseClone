@@ -1,5 +1,6 @@
 package org.example.migration;
 
+import migrations.MigrationScriptExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,12 +19,12 @@ import java.util.stream.Collectors;
 
 public class MigrationManager {
 
-    private static final Logger logger = LoggerFactory.getLogger(MigrationManager.class); // Logger initialization
+    private static final Logger logger = LoggerFactory.getLogger(MigrationManager.class);
 
     private static final String MIGRATION_TABLE = "migrations";
-    private static final String MIGRATION_DIR = "src/main/resources/migrations"; // Path to migration scripts
-    private static final String ORDER_FILE = "src/main/resources/sql-order.txt"; // Path to order file
-    private static final String CHECKSUM_ALGORITHM = "SHA-256"; // Algorithm for checksum calculation
+    private static final String MIGRATION_DIR = "src/main/resources/migrations";
+    private static final String ORDER_FILE = "src/main/resources/sql-order.txt";
+    private static final String CHECKSUM_ALGORITHM = "SHA-256";
 
     private final MigrationExecutor executor;
     private final Connection connection;
@@ -36,14 +37,11 @@ public class MigrationManager {
     public void runMigrations() {
 
         try {
-            // Create migration table if it doesn't exist
             createMigrationTableIfNotExists();
 
-            // Get the list of migration scripts in the order specified in sql-order.txt
             List<String> migrationOrder = readMigrationOrder();
             List<File> migrationFiles = getMigrationFiles();
 
-            // Execute migrations in the specified order
             for (String orderedFileName : migrationOrder) {
                 File migrationFile = migrationFiles.stream()
                         .filter(file -> file.getName().equals(orderedFileName))
@@ -128,13 +126,25 @@ public class MigrationManager {
             stmt.executeUpdate(sql);
             logger.info("Migration table created or already exists.");
         } catch (SQLException e) {
-            logger.error("Failed to create migration table: {}", e.getMessage(), e); // Log table creation error
+            logger.error("Failed to create migration table: {}", e.getMessage(), e);
             throw e;
         }
+        String createTableQuery = "CREATE TABLE IF NOT EXISTS migration_lock (" +
+                "id INT PRIMARY KEY, " +
+                "is_locked BOOLEAN)";
+        try (PreparedStatement createTableStmt = connection.prepareStatement(createTableQuery)) {
+            createTableStmt.executeUpdate();
+        }
+        String insertRow = "INSERT INTO migration_lock (id, is_locked) VALUES (1, FALSE)";
+        try (PreparedStatement createTableStmt = connection.prepareStatement(insertRow)) {
+            createTableStmt.executeUpdate();
+        }
+
+
     }
 
+
     public List<String> readMigrationOrder() throws IOException {
-        // Reading the sql-order.txt file and extracting migration execution order
         File orderFile = new File(ORDER_FILE);
         if (!orderFile.exists()) {
             logger.error("Order file does not exist: {}", ORDER_FILE);
@@ -162,7 +172,6 @@ public class MigrationManager {
 
     public String extractVersion(File file) {
         String filename = file.getName();
-        // Extract version from the filename (e.g., V1__init.sql -> 1)
         String version = filename.split("__")[0].replaceAll("[^0-9]", "");
         return version;
     }
