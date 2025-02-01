@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class MigrationValidator {
 
-    private static final Logger logger = LoggerFactory.getLogger(MigrationValidator.class); // Logger initialization
+    private static final Logger logger = LoggerFactory.getLogger(MigrationValidator.class);
     private final Connection connection;
 
     public MigrationValidator(Connection connection) {
@@ -26,8 +26,7 @@ public class MigrationValidator {
         logger.info("Validating SQL syntax: {}", sql);
 
         try (var stmt = connection.createStatement()) {
-            // Check syntax by using EXPLAIN but not executing the query
-            stmt.executeQuery("EXPLAIN " + sql); // EXPLAIN is used to check syntax
+            stmt.executeQuery("EXPLAIN " + sql);
             logger.info("SQL syntax is valid.");
             return true;
         } catch (SQLException e) {

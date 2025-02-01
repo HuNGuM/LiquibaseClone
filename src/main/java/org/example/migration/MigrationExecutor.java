@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 public class MigrationExecutor {
 
-    private static final Logger logger = LoggerFactory.getLogger(MigrationExecutor.class); // Logger initialization
+    private static final Logger logger = LoggerFactory.getLogger(MigrationExecutor.class);
 
     public void executeMigration(String script) {
         logger.info("Starting migration execution with script: {}", script);
@@ -24,7 +24,6 @@ public class MigrationExecutor {
 
         } catch (SQLException e) {
             logger.error("Error during migration execution: {}", e.getMessage());
-            // Handle rollback here if necessary
         }
     }
 }

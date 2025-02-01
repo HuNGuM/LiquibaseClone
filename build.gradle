@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'maven-publish'
     id 'com.github.johnrengelman.shadow' version '8.1.1' // Плагин для создания "fat" JAR
+    id 'jacoco'
 }
 
 group = 'com.mylibrary'
@@ -13,17 +14,31 @@ repositories {
 
 dependencies {
     implementation 'org.postgresql:postgresql:42.3.1'
-    implementation 'org.slf4j:slf4j-api:1.7.32'  // версия SLF4J API
-    implementation 'ch.qos.logback:logback-classic:1.2.6'  // версия Logback
-    implementation 'ch.qos.logback:logback-core:1.2.6'     // версия Logback core
-    implementation 'org.apache.commons:commons-dbcp2:2.9.0' // Добавляем зависимость для пула соединений
+    implementation 'org.slf4j:slf4j-api:1.7.32'
+    implementation 'ch.qos.logback:logback-classic:1.2.6'
+    implementation 'ch.qos.logback:logback-core:1.2.6'
+    implementation 'org.apache.commons:commons-dbcp2:2.9.0'
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.1'
+    testImplementation 'org.mockito:mockito-core:5.3.1'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.3.1'
+    testImplementation 'com.h2database:h2:2.1.214'
+    testImplementation 'org.testcontainers:postgresql:1.20.4'
+
+
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+
 }
+
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
 }
 
 publishing {
@@ -31,21 +46,18 @@ publishing {
         mavenJava(MavenPublication) {
             from components.java
 
-            // Обычный JAR с уникальным классификатором
             artifact(tasks.jar) {
-                classifier = 'plain'  // Классификатор для обычного JAR
+                classifier = 'plain'
             }
 
-            // "Fat" JAR с зависимостями с уникальным классификатором
             artifact(tasks.shadowJar) {
-                classifier = 'all-fat'  // Классификатор для "fat" JAR
+                classifier = 'all-fat'
             }
 
             groupId = 'com.mylibrary'
             artifactId = 'LiquibaseCloneProject'
             version = '1.0.0'
 
-            // Добавляем манифест
             pom {
                 name = 'LiquibaseCloneProject'
                 description = 'My custom Liquibase migration project'
@@ -77,7 +89,22 @@ publishing {
 
     repositories {
         maven {
-            url = uri("$buildDir/repos") // Публикация в локальный репозиторий
+            url = uri("$buildDir/repos")
         }
     }
+}
+jacocoTestReport {
+    dependsOn test
+
+    reports {
+        xml {
+            setEnabled(true)
+            destination file("${buildDir}/jacocoTestReport.xml")
+        }
+        html {
+            setEnabled(true)
+            destination file("${buildDir}/jacocoHtml")
+        }
+    }
+
 }

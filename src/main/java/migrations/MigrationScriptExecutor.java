@@ -3,6 +3,8 @@ package migrations;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,7 +13,7 @@ public class MigrationScriptExecutor {
 
     private final Connection connection;
 
-    public MigrationScriptExecutor(Connection connection) {
+    public MigrationScriptExecutor(Connection connection) throws SQLException {
         this.connection = connection;
     }
 
@@ -24,21 +26,48 @@ public class MigrationScriptExecutor {
     public void execute(String sql) throws SQLException {
         logger.info("Starting migration with SQL: {}", sql);
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        if (!lockMigration()) {
+            logger.warn("Migration is already locked. Skipping execution.");
+            return;
+        }
 
-            // Ensuring transactional integrity of the migration execution
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             connection.setAutoCommit(false);
             preparedStatement.execute();
             connection.commit();
             logger.info("Migration executed successfully.");
         } catch (SQLException e) {
             logger.error("Error executing migration: {}", e.getMessage());
-            connection.rollback();  // Rollback in case of error
+            connection.rollback();
             throw e;
         } finally {
-            // Restoring autocommit to its original state
+            unlockMigration();
             connection.setAutoCommit(true);
             logger.info("Autocommit restored to its original state.");
+        }
+    }
+
+    private boolean lockMigration() throws SQLException {
+        String checkLockQuery = "SELECT is_locked FROM migration_lock WHERE id = 1";
+        try (PreparedStatement checkLockStmt = connection.prepareStatement(checkLockQuery)) {
+            boolean isLocked = checkLockStmt.executeQuery().next();
+            if (isLocked) {
+                return false;
+            }
+
+            String lockMigrationQuery = "UPDATE migration_lock SET is_locked = TRUE WHERE id = 1";
+            try (PreparedStatement lockStmt = connection.prepareStatement(lockMigrationQuery)) {
+                lockStmt.executeUpdate();
+            }
+
+            return true;
+        }
+    }
+
+    private void unlockMigration() throws SQLException {
+        String unlockMigrationQuery = "UPDATE migration_lock SET is_locked = FALSE WHERE id = 1";
+        try (PreparedStatement unlockStmt = connection.prepareStatement(unlockMigrationQuery)) {
+            unlockStmt.executeUpdate();
         }
     }
 }
