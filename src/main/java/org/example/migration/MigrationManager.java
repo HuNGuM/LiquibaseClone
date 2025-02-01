@@ -140,12 +140,10 @@ public class MigrationManager {
         try (PreparedStatement createTableStmt = connection.prepareStatement(createTableQuery)) {
             createTableStmt.executeUpdate();
         }
-        String insertRow = "INSERT INTO migration_lock (id, is_locked) VALUES (1, FALSE)";
+        String insertRow = "INSERT INTO migration_lock (id, is_locked) VALUES (1, FALSE) ON CONFLICT (id) DO NOTHING";
         try (PreparedStatement createTableStmt = connection.prepareStatement(insertRow)) {
             createTableStmt.executeUpdate();
         }
-
-
     }
 
 
