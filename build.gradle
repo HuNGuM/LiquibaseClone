@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'maven-publish'
     id 'com.github.johnrengelman.shadow' version '8.1.1' // Плагин для создания "fat" JAR
-    id 'jacoco'  // Добавляем плагин JaCoCo
+    id 'jacoco'
 }
 
 group = 'com.mylibrary'
@@ -22,19 +22,17 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.1'
-
     testImplementation 'org.mockito:mockito-core:5.3.1'
     testImplementation 'org.mockito:mockito-junit-jupiter:5.3.1'
-
-    testImplementation 'com.h2database:h2:2.1.214' // Актуальная версия H2
-    // https://mvnrepository.com/artifact/org.testcontainers/postgresql
+    testImplementation 'com.h2database:h2:2.1.214'
     testImplementation 'org.testcontainers:postgresql:1.20.4'
 
 
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
 
-    // For Mockito 5.x, you might not need PowerMock at all
-    // testImplementation 'org.powermock:powermock-module-junit5:2.0.9' // Remove if not needed
-    // testImplementation 'org.powermock:powermock-api-mockito2:2.0.9' // Remove if not needed
 }
 
 
@@ -48,21 +46,18 @@ publishing {
         mavenJava(MavenPublication) {
             from components.java
 
-            // Обычный JAR с уникальным классификатором
             artifact(tasks.jar) {
-                classifier = 'plain'  // Классификатор для обычного JAR
+                classifier = 'plain'
             }
 
-            // "Fat" JAR с зависимостями с уникальным классификатором
             artifact(tasks.shadowJar) {
-                classifier = 'all-fat'  // Классификатор для "fat" JAR
+                classifier = 'all-fat'
             }
 
             groupId = 'com.mylibrary'
             artifactId = 'LiquibaseCloneProject'
             version = '1.0.0'
 
-            // Добавляем манифест
             pom {
                 name = 'LiquibaseCloneProject'
                 description = 'My custom Liquibase migration project'
@@ -94,21 +89,22 @@ publishing {
 
     repositories {
         maven {
-            url = uri("$buildDir/repos") // Публикация в локальный репозиторий
+            url = uri("$buildDir/repos")
         }
     }
 }
 jacocoTestReport {
-    dependsOn test // Зависимость отчета от задачи тестирования
+    dependsOn test
 
     reports {
         xml {
-            setEnabled(true)  // Включаем создание XML отчета
-            destination file("${buildDir}/jacocoTestReport.xml") // Путь для XML отчета
+            setEnabled(true)
+            destination file("${buildDir}/jacocoTestReport.xml")
         }
         html {
-            setEnabled(true) // Включаем создание HTML отчета
-            destination file("${buildDir}/jacocoHtml") // Путь для HTML отчета
+            setEnabled(true)
+            destination file("${buildDir}/jacocoHtml")
         }
     }
+
 }

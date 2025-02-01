@@ -48,7 +48,6 @@ public class MigrationScriptExecutor {
     }
 
     private boolean lockMigration() throws SQLException {
-        // Check if migration is locked
         String checkLockQuery = "SELECT is_locked FROM migration_lock WHERE id = 1";
         try (PreparedStatement checkLockStmt = connection.prepareStatement(checkLockQuery)) {
             boolean isLocked = checkLockStmt.executeQuery().next();
@@ -56,7 +55,6 @@ public class MigrationScriptExecutor {
                 return false;
             }
 
-            // Lock the migration
             String lockMigrationQuery = "UPDATE migration_lock SET is_locked = TRUE WHERE id = 1";
             try (PreparedStatement lockStmt = connection.prepareStatement(lockMigrationQuery)) {
                 lockStmt.executeUpdate();

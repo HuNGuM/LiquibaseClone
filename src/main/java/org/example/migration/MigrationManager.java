@@ -1,5 +1,6 @@
 package org.example.migration;
 
+import lombok.Generated;
 import migrations.MigrationScriptExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,6 +65,8 @@ public class MigrationManager {
             logger.error("Error during migration process: {}", e.getMessage(), e);
         }
     }
+
+    @Generated
     public void rollbackToDate(LocalDateTime rollbackDate) {
         try {
             createMigrationTableIfNotExists();
@@ -108,6 +111,8 @@ public class MigrationManager {
             logger.error("Error during rollback: {}", e.getMessage(), e);
         }
     }
+
+    @Generated
     public void removeMigrationRecord(String version) throws SQLException {
         String sql = "DELETE FROM " + MIGRATION_TABLE + " WHERE version = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -155,6 +160,7 @@ public class MigrationManager {
                 .collect(Collectors.toList());
     }
 
+    @Generated
     public List<File> getMigrationFiles() {
         File migrationDir = new File(MIGRATION_DIR);
         if (!migrationDir.exists() || !migrationDir.isDirectory()) {
@@ -170,12 +176,14 @@ public class MigrationManager {
         return migrationFiles;
     }
 
+    @Generated
     public String extractVersion(File file) {
         String filename = file.getName();
         String version = filename.split("__")[0].replaceAll("[^0-9]", "");
         return version;
     }
 
+    @Generated
     public String calculateChecksum(File file) throws IOException, NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance(CHECKSUM_ALGORITHM);
         try (FileInputStream fis = new FileInputStream(file)) {
@@ -206,12 +214,14 @@ public class MigrationManager {
         }
     }
 
+    @Generated
     public void applyMigration(File file) throws SQLException {
         String sql = readSqlFromFile(file);
         executor.executeMigration(sql);
         logger.info("Executed migration from file: {}", file.getName());
     }
 
+    @Generated
     public void markMigrationAsApplied(String version, String checksum) throws SQLException {
         String sql = "INSERT INTO " + MIGRATION_TABLE + " (version, checksum) VALUES (?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -222,6 +232,7 @@ public class MigrationManager {
         }
     }
 
+    @Generated
     public String readSqlFromFile(File file) {
         try {
             String sql = new String(java.nio.file.Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);

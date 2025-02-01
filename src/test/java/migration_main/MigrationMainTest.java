@@ -31,7 +31,6 @@ class MigrationMainTest {
 
     @Test
     void testRunMigrationsSuccessfully() throws SQLException {
-        // Arrange
         when(scanner.nextInt()).thenReturn(1);
         doNothing().when(migrationManager).runMigrations();
         migrationMain.run(scanner, migrationManager);
@@ -73,6 +72,7 @@ class MigrationMainTest {
 
         verifyNoInteractions(migrationManager);
     }
+
     @Test
     void testMain_runMigrations() {
         doNothing().when(migrationManager).runMigrations();

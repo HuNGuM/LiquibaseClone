@@ -9,7 +9,7 @@ public class DatabaseConfig {
     public static Connection getConnection() throws SQLException, IOException {
         Properties properties = new Properties();
 
-        properties.load(DatabaseConfig.class.getClassLoader().getResourceAsStream("application.properties"));
+        properties.load(DatabaseConfig.class.getClassLoader().getResourceAsStream("testApplication.properties"));
 
         String url = properties.getProperty("db.url");
         String username = properties.getProperty("db.username");

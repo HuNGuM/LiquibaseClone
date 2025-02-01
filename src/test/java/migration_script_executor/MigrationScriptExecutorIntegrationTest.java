@@ -20,12 +20,10 @@ public class MigrationScriptExecutorIntegrationTest {
         connection = DriverManager.getConnection("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;", "sa", "");
         migrationScriptExecutor = new MigrationScriptExecutor(connection);
 
-        // Очищаем таблицы перед каждым тестом
         try (Statement statement = connection.createStatement()) {
             statement.execute("DROP TABLE IF EXISTS test_table");
             statement.execute("DROP TABLE IF EXISTS migration_lock");
 
-            // Создаем таблицы заново
             statement.execute("CREATE TABLE IF NOT EXISTS test_table (id INT PRIMARY KEY, name VARCHAR(255))");
             statement.execute("CREATE TABLE IF NOT EXISTS migration_lock (id INT PRIMARY KEY, is_locked BOOLEAN)");
             statement.execute("MERGE INTO migration_lock (id, is_locked) KEY(id) VALUES (1, FALSE)");
@@ -59,7 +57,6 @@ public class MigrationScriptExecutorIntegrationTest {
             assertEquals(0, resultSet.getInt(1), "Данные не должны были вставиться, так как миграция была заблокирована");
         }
     }
-
 
 
     private void unlockMigration() throws SQLException {

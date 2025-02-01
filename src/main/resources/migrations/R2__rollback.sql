@@ -1,21 +1,26 @@
 -- R2__rollback_initial_schema.sql
 
--- Удаление уникального индекса на поле "name" в таблице "employees"
+-- Drop the unique index on the "name" field in the "employees" table
 DROP INDEX IF EXISTS idx_employees_name;
 
--- Снятие NOT NULL ограничения с поля "name" в таблице "projects"
-ALTER TABLE projects ALTER COLUMN name DROP NOT NULL;
+-- Remove the NOT NULL constraint from the "name" field in the "projects" table
+ALTER TABLE projects
+    ALTER COLUMN name DROP NOT NULL;
 
--- Удаление ограничения на длину имени в таблице "departments"
-ALTER TABLE departments DROP CONSTRAINT IF EXISTS chk_departments_name_length;
+-- Drop the name length constraint in the "departments" table
+ALTER TABLE departments
+    DROP CONSTRAINT IF EXISTS chk_departments_name_length;
 
--- Удаление индекса на поле "department_id" в таблице "employees"
+-- Drop the index on the "department_id" field in the "employees" table
 DROP INDEX IF EXISTS idx_employees_department_id;
 
--- Удаление ограничений внешнего ключа из таблицы "employee_projects"
+-- Drop foreign key constraints from the "employee_projects" table
 ALTER TABLE employee_projects
     DROP CONSTRAINT IF EXISTS fk_employee,
     DROP CONSTRAINT IF EXISTS fk_project;
 
--- Удаление уникального индекса на поля "employee_id" и "project_id" в таблице "employee_projects"
-DROP INDEX IF EXISTS idx_employee_projects;
+-- Drop the index on the "employee_id" field in the "employee_projects" table
+DROP INDEX IF EXISTS idx_employee_projects_employee;
+
+-- Drop the index on the "project_id" field in the "employee_projects" table
+DROP INDEX IF EXISTS idx_employee_projects_project;

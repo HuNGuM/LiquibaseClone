@@ -42,38 +42,32 @@ class MigrationManagerTest {
     @Test
     void testReadMigrationOrder() {
         try {
-            // Act
             List<String> order = migrationManager.readMigrationOrder();
 
-            // Assert
             assertNotNull(order);
             assertTrue(order.size() > 0, "Order list should not be empty");
         } catch (IOException e) {
-            e.printStackTrace(); // Log the exception but don't stop the tests
+            e.printStackTrace();
         }
     }
 
     @Test
     void testCalculateChecksum() {
         try {
-            // Arrange
             File migrationFile = new File("src/main/resources/migrations/V1__init.sql");
 
-            // Act
             String checksum = migrationManager.calculateChecksum(migrationFile);
 
-            // Assert
             assertNotNull(checksum, "Checksum should not be null");
             assertEquals(64, checksum.length(), "Checksum should be 64 characters long");
         } catch (IOException | NoSuchAlgorithmException e) {
-            e.printStackTrace(); // Log the exception but don't stop the tests
+            e.printStackTrace();
         }
     }
 
     @Test
     void testMigrationIsNotApplied() {
         try {
-            // Arrange
             String version = "whatever";
             String checksum = "whatever";
 
@@ -81,19 +75,15 @@ class MigrationManagerTest {
             when(resultSet.next()).thenReturn(true);
             when(resultSet.getInt(1)).thenReturn(1);
 
-            // Act
             boolean isApplied = migrationManager.isMigrationApplied(version, checksum);
 
-            // Simulate non-applied migration
             when(resultSet.getInt(1)).thenReturn(0);
 
-            // Act
             isApplied = migrationManager.isMigrationApplied(version, checksum);
 
-            // Assert
             assertFalse(isApplied, "Migration should not be marked as applied");
         } catch (SQLException e) {
-            e.printStackTrace(); // Log the exception but don't stop the tests
+            e.printStackTrace();
         }
     }
 

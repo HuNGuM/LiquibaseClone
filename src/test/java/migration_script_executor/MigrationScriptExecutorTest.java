@@ -13,10 +13,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MigrationScriptExecutorTest {
 
-    @Mock private Connection connection;
-    @Mock private PreparedStatement preparedStatement;
-    @Mock private ResultSet resultSet;
-    @Mock private SQLException sqlException;
+    @Mock
+    private Connection connection;
+    @Mock
+    private PreparedStatement preparedStatement;
+    @Mock
+    private ResultSet resultSet;
+    @Mock
+    private SQLException sqlException;
 
     private MigrationScriptExecutor migrationScriptExecutor;
 

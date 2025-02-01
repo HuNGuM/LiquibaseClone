@@ -1,26 +1,25 @@
-
 -- R1__rollback_initial_schema.sql
 
--- Удаление всех данных из таблицы "employee_projects"
+-- Delete all data from the "employee_projects" table
 DELETE FROM employee_projects;
 
--- Удаление всех данных из таблицы "employees"
+-- Delete all data from the "employees" table
 DELETE FROM employees;
 
--- Удаление всех данных из таблицы "projects"
+-- Delete all data from the "projects" table
 DELETE FROM projects;
 
--- Удаление всех данных из таблицы "departments"
+-- Delete all data from the "departments" table
 DELETE FROM departments;
 
--- Удаление таблицы "employee_projects"
+-- Drop the "employee_projects" table
 DROP TABLE IF EXISTS employee_projects;
 
--- Удаление таблицы "employees"
+-- Drop the "employees" table
 DROP TABLE IF EXISTS employees;
 
--- Удаление таблицы "projects"
+-- Drop the "projects" table
 DROP TABLE IF EXISTS projects;
 
--- Удаление таблицы "departments"
+-- Drop the "departments" table
 DROP TABLE IF EXISTS departments;
