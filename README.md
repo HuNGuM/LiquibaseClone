@@ -70,6 +70,8 @@ To apply migrations to the database, run the `main` method in the `MigrationMain
 ### Migration Rules:
 - The `main/resources/migrations/` folder contains migration files. All migration files must start with `V`, followed by a version number, a meaningful name, and `.sql` at the end.
 - Rollback files should be named as `R` + the version number of the migration to be rolled back + `.sql`.
+- When we use rollback to a specific date, we should enter the date and time, programm will check the "migrations" table and cancel all the migrations that were applied after the date and time the user entered (by using rollback files we created)
+- All the migrations are transactional (they're using "migration_lock" table to check whether any other migration is being applied at the moment)
 - The `resources/sql-order.txt` file specifies the order in which migrations are applied.
 - All logs are stored in `logs/application.log`.
 
