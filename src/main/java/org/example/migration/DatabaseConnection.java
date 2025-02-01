@@ -11,9 +11,12 @@ public class DatabaseConnection {
 
     static {
         BasicDataSource ds = new BasicDataSource();
-        ds.setUrl("jdbc:postgresql://localhost:5432/postgres");
-        ds.setUsername("postgres");
-        ds.setPassword("2326766vov");
+        String url = System.getenv("URL");
+        String user = System.getenv("USER");
+        String password = System.getenv("PASSWORD");
+        ds.setUrl(url);
+        ds.setUsername(user);
+        ds.setPassword(password);
         ds.setInitialSize(5);
         ds.setMaxTotal(10);
         dataSource = ds;
