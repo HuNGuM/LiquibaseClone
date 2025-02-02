@@ -105,6 +105,7 @@ Adds indexes on the employee_id and project_id fields to optimize lookups by emp
 ## Testing
 The `test/` directory contains unit tests for various methods.
 Code coverage reports can be found in `build/jacocoHtml/index.html`. Some methods in the `MigrationManager` class are excluded from coverage (annotated with `@Generated`).
+Docker engine running on the background is recommended
 
 ---
 
